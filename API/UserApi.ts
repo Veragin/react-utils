@@ -16,4 +16,10 @@ class UserApi extends BaseApi {
     };
 }
 
+type TUserInfo = {
+    name: string;
+    email: string;
+    type: string;
+}
+
 export default UserApi;
