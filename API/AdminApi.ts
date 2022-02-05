@@ -1,5 +1,6 @@
+import { TBannerSetExport, TBannerSetInfo, TBannerSetType } from '../Const/BannerSet';
+
 import BaseApi from './BaseApi';
-import { TBannerSetType } from '../../Service/Soft/Const/BannerSet';
 
 class AdminApi extends BaseApi {
     constructor() {

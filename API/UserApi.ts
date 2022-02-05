@@ -16,10 +16,12 @@ class UserApi extends BaseApi {
     };
 }
 
-type TUserInfo = {
+export type TUserInfo = {
     name: string;
     email: string;
-    type: string;
-}
+    type: TUserType;
+};
+
+export type TUserType = 'admin' | 'contributor' | 'user' | 'unknown';
 
 export default UserApi;

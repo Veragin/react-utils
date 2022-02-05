@@ -1,14 +1,11 @@
+import { TBannerSetExport, TBannerSetInfo } from '../Const/BannerSet';
+
 import BaseApi from './BaseApi';
 
-class ServiceApi extends BaseApi {
+export class ServiceApi extends BaseApi {
     constructor() {
         super('https://resaizer.eu/editor/');
     }
-
-    getSetsInfo = async (): Promise<TBannerSetExportInfo[]> => {
-        const res = await this.send('GET', `v1/sets`);
-        return JSON.parse(res);
-    };
 
     createSet = async (data: TBannerSetExport): Promise<number> => {
         const res = await this.send('POST', `v1/sets`, JSON.stringify(data));
@@ -35,7 +32,12 @@ class ServiceApi extends BaseApi {
         return JSON.parse(res);
     };
 
-    getTemplates = async (): Promise<TBannerSetExportInfo[]> => {
+    getSetsInfo = async (): Promise<TBannerSetInfo[]> => {
+        const res = await this.send('GET', `v1/sets`);
+        return JSON.parse(res);
+    };
+
+    getTemplates = async (): Promise<TBannerSetInfo[]> => {
         const res = await this.send('GET', `v1/sets/template`);
         return JSON.parse(res);
     };
@@ -65,4 +67,22 @@ class ServiceApi extends BaseApi {
     };
 }
 
-export default ServiceApi;
+/**********************************************************************************
+ ************    Images - Types
+ **********************************************************************************/
+
+export type TApiImage = {
+    imgId: number;
+    base64Img: string;
+};
+
+export type TApiImageStore = {
+    mappingId: number;
+    elementId: number[];
+    img: HTMLImageElement;
+}[];
+
+export type TApiImageMapping = {
+    mappingId: number;
+    imgId: number;
+}[];
