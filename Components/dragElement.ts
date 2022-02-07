@@ -8,7 +8,12 @@ export const findId = (e: React.DragEvent<HTMLDivElement>) => {
     return null;
 };
 
-export const findLayerWithId = (layers: TStackData[], id: number): null | TStackData => {
+type TLayerData<T> = {
+    id: number;
+    stack: T[];
+}
+
+export const findLayerWithId = <T extends TLayerData<T>>(layers: T[], id: number): null | T => {
     for (let l of layers) {
         if (l.id === id) return l;
         if (l.stack) {

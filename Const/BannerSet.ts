@@ -1,3 +1,6 @@
+import { TBannerExport } from "./BannerExport";
+import { TMotherRole } from "./Mother";
+
 export const BANNERSET_BENT_LIST = [
     { value: 'brand', title: _('Brand') },
     { value: 'sell', title: _('Sell') },
