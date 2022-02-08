@@ -11,7 +11,21 @@ class UserApi extends BaseApi {
         return {
             name: 'František Malý',
             email: 'franta@seznam.cz',
-            type: 'user',
+            profession: 'uklízečka',
+            userType: 'user',
+            image: '',
+        };
+    };
+
+    getBillingInfo = async (): Promise<TBillingInfo> => {
+        /*const res = await this.send('GET', 'user/info');
+        return JSON.parse(res);*/
+        return {
+            subscriptionType: 'vip',
+            billilngFrequency: 'monthly',
+            paymentState: 'waitingForPayment',
+            expire: Date.now(),
+            accountId: 11111,
         };
     };
 }
@@ -19,9 +33,22 @@ class UserApi extends BaseApi {
 export type TUserInfo = {
     name: string;
     email: string;
-    type: TUserType;
+    profession: string;
+    userType: TUserType;
+    image?: string;
 };
 
-export type TUserType = 'admin' | 'contributor' | 'user' | 'unknown';
+export type TBillingInfo = {
+    subscriptionType: TSubscriptionType;
+    billilngFrequency: TBillilngFrequency;
+    paymentState: TPaymentState;
+    expire: number;
+    accountId: number;
+};
+
+export type TUserType = 'admin' | 'contributor' | 'user' | 'visitor';
+export type TSubscriptionType = 'free' | 'vip';
+export type TBillilngFrequency = 'monthly' | 'yearly';
+export type TPaymentState = 'waitingForPayment' | 'paid';
 
 export default UserApi;
