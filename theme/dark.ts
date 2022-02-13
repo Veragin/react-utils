@@ -31,8 +31,8 @@ const theme = createTheme({
         },
         input: {
             selected: '#dbcaff',
-            hover: '#eeeeee',
-            default: '#e0e0e0',
+            hover: '#f5f5f5',
+            default: '#eaeaea',
             border: '#BC3CD0',
         },
         backgr: {

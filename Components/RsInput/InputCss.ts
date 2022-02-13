@@ -1,5 +1,7 @@
 import styled, { css } from 'styled-components';
 
+import { spacingCss } from '../globalCss';
+
 export const inputCss = css`
     ${({ theme }) => css`
         background-color: ${theme.palette.input.default};
@@ -22,6 +24,12 @@ export const inputCss = css`
             border: 2px solid ${theme.palette.primary.main};
             background-color: ${theme.palette.input.hover};
         }
+
+        &:disabled {
+            background-color: ${theme.palette.input.hover};
+            border: 2px solid ${theme.palette.input.hover};
+            color: grey;
+        }
     `}
 `;
 
@@ -30,11 +38,12 @@ export const InputLabel = styled.label`
     display: flex;
     flex-direction: column;
     cursor: pointer;
+    row-gap: ${spacingCss(0.5)};
 `;
 
 export const InputTitle = styled.span`
-    color: blue;
+    color: ${({ theme }) => theme.palette.secondary.main};
     user-select: none;
-    font-size: 16px;
-    text-transform: capitalize;
+    font-size: 10px;
+    text-transform: uppercase;
 `;

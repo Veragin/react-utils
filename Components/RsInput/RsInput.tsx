@@ -6,16 +6,26 @@ import styled from 'styled-components';
 type Props<T> = {
     title: string;
     value: T;
-    setValue: (v: T) => void;
+    setValue?: (v: T) => void;
+    disabled?: boolean;
+    readOnly?: boolean;
 };
 
-const Input = <T extends string>({ title, value, setValue }: Props<T>) => {
+const Input = <T extends string>({
+    title,
+    value,
+    setValue,
+    disabled,
+    readOnly,
+}: Props<T>) => {
     return (
         <InputLabel>
             <InputTitle>{title}</InputTitle>
             <StyledInput
                 value={value}
-                onChange={(e) => setValue(e.target.value as T)}
+                onChange={(e) => setValue?.(e.target.value as T)}
+                disabled={disabled}
+                readOnly={readOnly}
             />
         </InputLabel>
     );

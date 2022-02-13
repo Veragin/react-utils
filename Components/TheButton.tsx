@@ -3,26 +3,27 @@ import styled, { css } from 'styled-components';
 import { DeleteIcon } from './Icons';
 import React from 'react';
 import { Tooltip } from '@mui/material';
+import { spacingCss } from './globalCss';
 
-const buttonCss = css`
+const buttonCss = (small?: boolean) => css`
     font-weight: 600;
-    font-size: 16px;
     text-align: center;
     cursor: pointer;
     border-radius: 140px;
+    padding: ${spacingCss(small ? 1 : 1.5)} ${spacingCss(small ? 1.5 : 3)};
+    font-size: ${small ? '12px' : '16px'};
 `;
 
-export const ThePrimaryButton = styled.button`
-    ${buttonCss}
-    color: #ffffff;
-    ${({ theme }) => css`
-        padding: ${theme.spacing(1.5)} ${theme.spacing(3)};
+export const ThePrimaryButton = styled.button<{ $small?: boolean }>`
+    ${({ theme, $small }) => css`
+        ${buttonCss($small)}
         background: linear-gradient(
             200deg,
             ${theme.palette.primary.main} 7.41%,
             ${theme.palette.secondary.main} 80.94%
         );
     `}
+    color: #ffffff;
     border: 0;
 
     &:hover {
@@ -30,10 +31,9 @@ export const ThePrimaryButton = styled.button`
     }
 `;
 
-export const TheSecondaryButton = styled.button`
-    ${buttonCss}
+export const TheSecondaryButton = styled.button<{ $small?: boolean }>`
+    ${({ $small }) => buttonCss($small)}
     color: #c0c0c0;
-    padding: ${({ theme }) => `${theme.spacing(1.5)} ${theme.spacing(3)}`};
     background: transparent;
     border: 2px solid #c0c0c0;
 
