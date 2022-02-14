@@ -37,7 +37,6 @@ export const InputLabel = styled.label`
     width: 100%;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
     row-gap: ${spacingCss(0.5)};
 `;
 
@@ -46,4 +45,5 @@ export const InputTitle = styled.span`
     user-select: none;
     font-size: 10px;
     text-transform: uppercase;
+    font-weight: 600;
 `;

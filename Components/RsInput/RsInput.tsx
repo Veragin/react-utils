@@ -9,6 +9,7 @@ type Props<T> = {
     setValue?: (v: T) => void;
     disabled?: boolean;
     readOnly?: boolean;
+    type?: 'text' | 'password';
 };
 
 const Input = <T extends string>({
@@ -17,6 +18,7 @@ const Input = <T extends string>({
     setValue,
     disabled,
     readOnly,
+    type,
 }: Props<T>) => {
     return (
         <InputLabel>
@@ -26,6 +28,7 @@ const Input = <T extends string>({
                 onChange={(e) => setValue?.(e.target.value as T)}
                 disabled={disabled}
                 readOnly={readOnly}
+                type={type}
             />
         </InputLabel>
     );

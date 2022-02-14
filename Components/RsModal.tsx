@@ -1,16 +1,18 @@
-import { Backdrop, Modal } from '@mui/material';
-import styled, { css } from 'styled-components';
+import { Backdrop, Modal, Typography } from '@mui/material';
+import { borderRadiusCss, spacingCss } from './globalCss';
 
 import { Column } from './StyledComponents';
 import React from 'react';
+import styled from 'styled-components';
 
 type Props = {
     open: boolean;
     onClose: () => void;
+    title: string;
     children: React.ReactNode;
 };
 
-export const RsModal = ({ open, onClose, children }: Props) => {
+export const RsModal = ({ open, onClose, children, title }: Props) => {
     return (
         <Modal
             open={open}
@@ -18,16 +20,30 @@ export const RsModal = ({ open, onClose, children }: Props) => {
             BackdropComponent={StyledBackdrop}
             onBackdropClick={onClose}
         >
-            <StyledCont>{children}</StyledCont>
+            <StyledCont>
+                <StyledTitle variant="h4">{title}</StyledTitle>
+                {children}
+            </StyledCont>
         </Modal>
     );
 };
 
 const StyledCont = styled(Column)`
     background-color: #ffffff;
-    ${({ theme }) => css`
-        border-radius: 3 * ${theme.measurement.borderRadius}px;
-    `}
+    border-radius: ${borderRadiusCss(6)};
+    padding: ${spacingCss(6)} ${spacingCss(2)};
+    gap: ${spacingCss(3)};
+    width: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`;
+
+const StyledTitle = styled(Typography)`
+    color: black;
+    width: 100;
+    text-align: center;
 `;
 
 const StyledBackdrop = styled(Backdrop)`
