@@ -31,8 +31,8 @@ export const RsModal = ({ open, onClose, children, title }: Props) => {
 const StyledCont = styled(Column)`
     background-color: #ffffff;
     border-radius: ${borderRadiusCss(6)};
-    padding: ${spacingCss(6)} ${spacingCss(2)};
-    gap: ${spacingCss(3)};
+    padding: ${spacingCss(4)} ${spacingCss(4)};
+    gap: ${spacingCss(4)};
     width: 250px;
     position: absolute;
     top: 50%;
