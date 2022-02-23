@@ -3,7 +3,7 @@ import { TColor, TPoint, TRect } from './Types';
 export type TBannerExport = TRect & {
     id: number;
     extent: string;
-    root: TGroup;
+    element: TGroup;
 };
 
 export type TNode = {

@@ -1,5 +1,5 @@
-import { TBannerExport } from "./BannerExport";
-import { TMotherRole } from "./Mother";
+import { TBannerExport } from './BannerExport';
+import { TMotherRole } from './Mother';
 
 export const BANNERSET_BENT_LIST = [
     { value: 'brand', title: _('Brand') },
@@ -38,19 +38,23 @@ export const BANNERSET_CATEGORY = BANNERSET_CATEGORY_LIST.map((category) => cate
 export type TBannerSetCategory = typeof BANNERSET_CATEGORY[number];
 
 export const BANNERSET_TYPE_LIST = [
+    { value: 'public', title: _('Public') },
     { value: 'template', title: _('Template') },
     { value: 'private', title: _('Private') },
-    { value: 'private_template', title: _('Private Template') },
-    { value: 'guest', title: _('Guest') },
+    { value: 'draft', title: _('Draft') },
 ] as const;
 export const BANNERSET_TYPE = BANNERSET_TYPE_LIST.map((type) => type.value);
 export type TBannerSetType = typeof BANNERSET_TYPE[number];
 
-export const BANNERSET_STATE = ['incomplete', 'complete'] as const;
+export const BANNERSET_STATE = [
+    { value: 'before_review', title: _('Before review') },
+    { value: 'in_review', title: _('Review') },
+    { value: 'returned', title: _('Returned') },
+] as const;
 export type TBannerSetState = typeof BANNERSET_STATE[number];
 
 export type TBannerSetExport = {
-    set: TBannerSetInfo;
+    setInfo: TBannerSetInfo;
     extents: TBannerExport[];
     mothers?: TBannerSetMotherRole[];
 };

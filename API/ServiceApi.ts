@@ -23,7 +23,7 @@ export class ServiceApi extends BaseApi {
     };
 
     getSet = async (setId: number): Promise<TBannerSetExport> => {
-        const res = await this.send('GET', `v1/sets/${setId}`);
+        const res = await this.send('GET', `v1/sets/template/${setId}`);
         return JSON.parse(res);
     };
 
@@ -47,22 +47,30 @@ export class ServiceApi extends BaseApi {
      **********************************************************************************/
 
     saveImages = async (setId: number, data: TApiImageStore): Promise<TApiImageMapping> => {
-        const res = await this.send('POST', `v2/image/${setId}/upload`, JSON.stringify(data));
+        const res = await this.send('POST', `v1/images/${setId}/upload`, JSON.stringify(data));
         return JSON.parse(res).image;
     };
 
     saveGuestImages = async (setId: number, data: TApiImageStore): Promise<TApiImageMapping> => {
-        const res = await this.send('POST', `v2/image/${setId}/guest/upload`, JSON.stringify(data));
+        const res = await this.send('POST', `v1/images/${setId}/guest/upload`, JSON.stringify(data));
         return JSON.parse(res).image;
     };
 
     getImages = async (setId: number, imgIds: number[]): Promise<TApiImage[]> => {
-        const res = await this.send('POST', `v2/image/${setId}/download`, JSON.stringify(imgIds));
-        return JSON.parse(res);
+        const res = await this.send(
+            'POST',
+            `v1/images/download`,
+            JSON.stringify({
+                setId,
+                imgId: imgIds,
+            }),
+            'application/json'
+        );
+        return JSON.parse(res).img;
     };
 
     getTemplateImages = async (setId: number, imgIds: number[]): Promise<TApiImage[]> => {
-        const res = await this.send('POST', `v2/image/${setId}/download-template`, JSON.stringify(imgIds));
+        const res = await this.send('POST', `v1/images/${setId}/download-template`, JSON.stringify(imgIds));
         return JSON.parse(res);
     };
 }
