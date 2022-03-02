@@ -4,41 +4,50 @@ import BaseApi from './BaseApi';
 
 export class ServiceApi extends BaseApi {
     constructor() {
-        super('https://resaizer.eu/editor/');
+        super('https://resaizer.eu/editor/v1/');
     }
 
-    createSet = async (data: TBannerSetExport): Promise<number> => {
-        const res = await this.send('POST', `v1/sets`, JSON.stringify(data));
-        return JSON.parse(res);
-    };
-
-    updateSet = async (data: TBannerSetExport) => {
-        const res = await this.send('PUT', `v1/sets`, JSON.stringify(data));
-        return JSON.parse(res);
-    };
-
-    deleteSet = async (setId: number) => {
-        const res = await this.send('DELETE', `v1/sets/${setId}`);
+    getSetsOverview = async (): Promise<TBannerSetInfo[]> => {
+        const res = await this.send('GET', `sets`);
         return JSON.parse(res);
     };
 
     getSet = async (setId: number): Promise<TBannerSetExport> => {
-        const res = await this.send('GET', `v1/sets/template/${setId}`);
+        const res = await this.send('GET', `sets/${setId}`);
+        return JSON.parse(res);
+    };
+
+    createSet = async (data: TBannerSetExport): Promise<number> => {
+        const res = await this.send('POST', `sets`, JSON.stringify(data));
+        return JSON.parse(res);
+    };
+
+    updateSet = async (data: TBannerSetExport) => {
+        const res = await this.send('PUT', `sets`, JSON.stringify(data));
         return JSON.parse(res);
     };
 
     updateSetInfo = async (data: TBannerSetInfo) => {
-        const res = await this.send('PUT', `v1/sets/info`, JSON.stringify(data));
+        const res = await this.send('PUT', `sets/info`, JSON.stringify(data));
         return JSON.parse(res);
     };
 
-    getSetsInfo = async (): Promise<TBannerSetInfo[]> => {
-        const res = await this.send('GET', `v1/sets`);
+    deleteSet = async (setId: number) => {
+        const res = await this.send('DELETE', `sets/${setId}/`);
         return JSON.parse(res);
     };
 
-    getTemplates = async (): Promise<TBannerSetInfo[]> => {
-        const res = await this.send('GET', `v1/sets/template`);
+    /**********************************************************************************
+     ************    Public
+     **********************************************************************************/
+
+    getPublicOverview = async (): Promise<TBannerSetInfo[]> => {
+        const res = await this.send('GET', `sets/public`);
+        return JSON.parse(res);
+    };
+
+    getPublicSet = async (setId: number): Promise<TBannerSetExport> => {
+        const res = await this.send('GET', `sets/public/${setId}`);
         return JSON.parse(res);
     };
 
@@ -47,31 +56,13 @@ export class ServiceApi extends BaseApi {
      **********************************************************************************/
 
     saveImages = async (setId: number, data: TApiImageStore): Promise<TApiImageMapping> => {
-        const res = await this.send('POST', `v1/images/${setId}/upload`, JSON.stringify(data));
-        return JSON.parse(res).image;
-    };
-
-    saveGuestImages = async (setId: number, data: TApiImageStore): Promise<TApiImageMapping> => {
-        const res = await this.send('POST', `v1/images/${setId}/guest/upload`, JSON.stringify(data));
+        const res = await this.send('POST', `images/${setId}/upload`, JSON.stringify(data));
         return JSON.parse(res).image;
     };
 
     getImages = async (setId: number, imgIds: number[]): Promise<TApiImage[]> => {
-        const res = await this.send(
-            'POST',
-            `v1/images/download`,
-            JSON.stringify({
-                setId,
-                imgId: imgIds,
-            }),
-            'application/json'
-        );
+        const res = await this.send('POST', `images/${setId}/download`, JSON.stringify(imgIds), 'application/json');
         return JSON.parse(res).img;
-    };
-
-    getTemplateImages = async (setId: number, imgIds: number[]): Promise<TApiImage[]> => {
-        const res = await this.send('POST', `v1/images/${setId}/download-template`, JSON.stringify(imgIds));
-        return JSON.parse(res);
     };
 }
 

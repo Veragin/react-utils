@@ -1,5 +1,3 @@
-import { TBannerSetExport, TBannerSetInfo, TBannerSetType } from '../Const/BannerSet';
-
 import BaseApi from './BaseApi';
 
 class AdminApi extends BaseApi {
@@ -7,31 +5,20 @@ class AdminApi extends BaseApi {
         super('https://resaizer.eu/editor/v1/admin/');
     }
 
-    getSetsInfo = async (): Promise<TBannerSetInfo[]> => {
-        const res = await this.send('GET', 'sets/info');
-        return JSON.parse(res);
+    clearCache = async () => {
+        await this.send('GET', `cache/clearAll`);
     };
 
-    getSetsInfoByType = async (type: TBannerSetType): Promise<TBannerSetInfo[]> => {
-        const res = await this.send('GET', `sets/info/${type}`);
-        return JSON.parse(res);
-    };
-
-    getSet = async (setId: number): Promise<TBannerSetExport> => {
-        const res = await this.send('GET', `sets/${setId}`);
-        return JSON.parse(res);
-    };
-
-    approveTemplate = async (setId: number) => {
+    approveDraft = async (setId: number) => {
         await this.send('PUT', `sets/confirm/${setId}`);
     };
 
-    returnTemplate = async (setId: number, msg: string) => {
+    returnDraft = async (setId: number, msg: string) => {
         await this.send('PUT', `sets/confirm/${setId}`, msg);
     };
 
-    clearCache = async () => {
-        await this.send('GET', `cache/clearAll`);
+    deleteSet = async (setId: number) => {
+        await this.send('DELETE', `sets/${setId}`);
     };
 }
 
