@@ -2,7 +2,7 @@ class BaseApi {
     constructor(public baseUrl: string) {}
 
     send(
-        method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'UPDATE',
+        method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
         url: string,
         data?: any,
         contentType?: string,
