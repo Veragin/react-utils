@@ -18,6 +18,9 @@ class BaseApi {
             if (contentType) xhr.setRequestHeader('Content-Type', contentType);
             if (responseType) xhr.responseType = responseType;
 
+            const token = localStorage.getItem('token');
+            if (token) xhr.setRequestHeader('x-auth-token', token);
+
             xhr.onloadend = () => {
                 if (Math.floor(xhr.status / 100) !== 2) {
                     reject(xhr.response);

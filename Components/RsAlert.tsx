@@ -1,10 +1,28 @@
-import React from 'react';
 import { Alert } from '@mui/material';
+import React from 'react';
+import styled from 'styled-components';
+
+export type TAlert = {
+    msg: string;
+    severity?: 'error' | 'warning' | 'info' | 'success';
+} | null;
 
 type Props = {
-    msg: string;
+    alert: TAlert;
+    onClose?: () => void;
 };
 
-export const RsAlert = ({ msg }: Props) => {
-    return <Alert severity="error">{msg}</Alert>;
+export const RsAlert = ({ alert, onClose }: Props) => {
+    if (alert === null) return null;
+
+    return (
+        <StyledAlert severity={alert.severity ?? 'error'} onClose={onClose}>
+            {alert.msg}
+        </StyledAlert>
+    );
 };
+
+const StyledAlert = styled(Alert)`
+    width: 100%;
+    box-sizing: border-box;
+`;

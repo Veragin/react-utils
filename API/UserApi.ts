@@ -3,7 +3,7 @@ import { TLanguage } from 'react-utils/LanguageStore';
 
 class UserApi extends BaseApi {
     constructor() {
-        super('https://resaizer.eu/editor/v1/');
+        super('https://resaizer.eu/user/v1/');
     }
 
     getUserInfo = async (): Promise<TUserInfo> => {
@@ -17,6 +17,32 @@ class UserApi extends BaseApi {
 
     changePassword = async (pass: TUserPassword): Promise<void> => {
         await this.send('PATCH', 'users/password', pass);
+    };
+
+    loginUser = async (email: string, password: string) => {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'https://resaizer.eu/user/login', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.withCredentials = true;
+
+            xhr.onloadend = () => {
+                if (Math.floor(xhr.status / 100) !== 2) {
+                    reject(xhr.response);
+                } else {
+                    const authToken = xhr.getResponseHeader('x-auth-token');
+                    if (authToken) {
+                        // save autToken to localStorage
+                        localStorage.setItem('token', authToken);
+                        resolve(true);
+                    } else {
+                        reject('No auth token found in headers.');
+                    }
+                }
+            };
+
+            xhr.send(JSON.stringify({ email, password }));
+        });
     };
 }
 

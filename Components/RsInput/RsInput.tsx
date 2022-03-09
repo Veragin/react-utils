@@ -12,7 +12,7 @@ type Props<T> = {
     type?: 'text' | 'password';
 };
 
-const Input = <T extends string>({
+const RsInput = <T extends string>({
     title,
     value,
     setValue,
@@ -38,4 +38,4 @@ const StyledInput = styled.input`
     ${inputCss}
 `;
 
-export default Input;
+export default RsInput;

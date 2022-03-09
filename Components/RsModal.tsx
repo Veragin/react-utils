@@ -42,7 +42,7 @@ const StyledCont = styled(Column)`
 
 const StyledTitle = styled(Typography)`
     color: black;
-    width: 100;
+    width: 100%;
     text-align: center;
 `;
 
