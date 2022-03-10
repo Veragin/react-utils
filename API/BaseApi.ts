@@ -1,3 +1,5 @@
+import { parseErrorResponse } from './Errors';
+
 class BaseApi {
     constructor(public baseUrl: string) {}
 
@@ -23,8 +25,10 @@ class BaseApi {
 
             xhr.onloadend = () => {
                 if (Math.floor(xhr.status / 100) !== 2) {
-                    reject(xhr.response);
-                } else resolve(xhr.response);
+                    reject(parseErrorResponse(xhr.response));
+                } else {
+                    resolve(xhr.response);
+                }
             };
 
             xhr.send(realData);
