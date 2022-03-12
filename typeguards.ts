@@ -7,7 +7,7 @@ export function assert(value: boolean, msg: string): asserts value {
 }
 
 export function assertNotTRect<T extends Object>(value: T | undefined, msg?: string): asserts value is T & TRect {
-    assert(!isTRect(value), msg ?? `Value is not type of TRect`);
+    assert(isTRect(value), msg ?? `Value is not type of TRect`);
 }
 
 export function isTRect<T extends Partial<TRect>>(value: T | undefined): value is T & TRect {
