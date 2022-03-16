@@ -41,7 +41,7 @@ class UserApi extends BaseApi {
                 }
             };
 
-            xhr.send(JSON.stringify({ email, password }));
+            xhr.send(JSON.stringify({ username: email, password }));
         });
     };
 }
