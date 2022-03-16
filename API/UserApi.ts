@@ -48,15 +48,16 @@ class UserApi extends BaseApi {
 
 export type TUserInfo = {
     accountDetails: TAccountDetails;
-    billingInfo: TBillingInfo;
+    billingInfo: TBillingInfo | null;
+    researchDetails: null;
 };
 
 export type TAccountDetails = {
-    name: string;
+    name: string | null;
     email: string;
     profession: string;
-    userRole: TUserRole;
-    image?: string;
+    roles: TUserRole[];
+    image: string | null;
     language: TLanguage;
 };
 
@@ -68,7 +69,7 @@ export type TBillingInfo = {
     accountId: number;
 };
 
-export type TUserRole = 'admin' | 'contributor' | 'user' | 'visitor';
+export type TUserRole = 'ADMIN' | 'CONTRIBUTOR' | 'USER' | 'VISITOR';
 export type TSubscriptionType = 'free' | 'vip';
 export type TBillilngFrequency = 'monthly' | 'yearly';
 export type TPaymentState = 'waitingForPayment' | 'paid';

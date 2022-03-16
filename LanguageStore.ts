@@ -5,14 +5,14 @@ import vocabulary from 'Assets/generated/translations.json';
 type TVocabulary = Record<TLanguage, Record<string, string>>;
 
 class LaguageStore {
-    _language: TLanguage = 'en_US';
+    _language: TLanguage = 'EN';
 
     constructor() {
         makeAutoObservable(this);
     }
 
     setLanguage = (language?: TLanguage) => {
-        this._language = language ?? 'en_US';
+        this._language = language ?? 'EN';
     };
 
     getLanguage = () => {
@@ -35,7 +35,7 @@ export const languageData = [
         state: 'usa',
         language: _('english'),
         flag: flagUs,
-        vocId: 'en_US',
+        vocId: 'EN',
     },
 ] as const;
 
