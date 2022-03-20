@@ -2,10 +2,16 @@ export const parseErrorResponse = (response: string) => {
     const data = JSON.parse(response);
 
     if (data.error === 'Unauthorized') {
-        throw new UnauthorizedError(data.path);
+        return new UnauthorizedError(data.path);
     }
 
-    throw new StatusError(data.status, data.path, data.message);
+    return new StatusError(data.status, data.path, data.message);
+};
+
+export const parseErrorStatus = (status: number) => {
+    if (status === 401) return new UnauthorizedError('unknown');
+
+    return new StatusError(status, 'unknown', 'unknown');
 };
 
 export class UnauthorizedError extends Error {

@@ -1,4 +1,4 @@
-import { parseErrorResponse } from './Errors';
+import { parseErrorResponse, parseErrorStatus } from './Errors';
 
 class BaseApi {
     constructor(public baseUrl: string) {}
@@ -25,7 +25,11 @@ class BaseApi {
 
             xhr.onloadend = () => {
                 if (Math.floor(xhr.status / 100) !== 2) {
-                    reject(parseErrorResponse(xhr.response));
+                    if (xhr.response) {
+                        reject(parseErrorResponse(xhr.response));
+                    } else {
+                        reject(parseErrorStatus(xhr.status));
+                    }
                 } else {
                     resolve(xhr.response);
                 }
