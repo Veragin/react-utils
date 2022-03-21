@@ -10,14 +10,15 @@ class BaseApi {
         contentType?: string,
         responseType?: XMLHttpRequestResponseType
     ): Promise<any> {
-        const realUrl = method !== 'GET' ? url : `${url}?${this.paramToUrl(data)}`;
-        const realData = method !== 'GET' ? data : undefined;
+        const isNotGet = method !== 'GET';
+        const realUrl = isNotGet ? url : `${url}?${this.paramToUrl(data)}`;
+        const realData = isNotGet ? data : undefined;
 
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
             xhr.open(method, this.baseUrl + realUrl, true);
 
-            if (contentType) xhr.setRequestHeader('Content-Type', contentType);
+            if (contentType || isNotGet) xhr.setRequestHeader('Content-Type', contentType ?? 'application/json');
             if (responseType) xhr.responseType = responseType;
 
             const token = localStorage.getItem('token');

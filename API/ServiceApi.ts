@@ -78,7 +78,7 @@ export type TApiImage = {
 export type TApiImageStore = {
     mappingId: number;
     elementId: number[];
-    img: HTMLImageElement;
+    img: string;
 }[];
 
 export type TApiImageMapping = {
