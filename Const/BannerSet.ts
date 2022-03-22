@@ -73,3 +73,5 @@ export type TBannerSetInfo = {
     preview?: string;
     derivate?: number;
 };
+
+export const PREVIEW_EXTENT = 'w300h250';
