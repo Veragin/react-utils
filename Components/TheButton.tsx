@@ -12,6 +12,7 @@ const buttonCss = (small?: boolean) => css`
     border-radius: 140px;
     padding: ${spacingCss(small ? 1 : 1.5)} ${spacingCss(small ? 1.5 : 3)};
     font-size: ${small ? '12px' : '16px'};
+    white-space: nowrap;
 `;
 
 export const ThePrimaryButton = styled.button<{ $small?: boolean }>`

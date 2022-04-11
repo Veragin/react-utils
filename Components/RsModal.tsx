@@ -33,7 +33,7 @@ const StyledCont = styled(Column)`
     border-radius: ${borderRadiusCss(6)};
     padding: ${spacingCss(4)} ${spacingCss(4)};
     gap: ${spacingCss(4)};
-    width: 250px;
+    min-width: 250px;
     position: absolute;
     top: 50%;
     left: 50%;
