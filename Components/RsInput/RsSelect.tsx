@@ -13,7 +13,7 @@ type Props<T> = {
     readonly list: { readonly value: T; readonly title: string }[];
 };
 
-const Select = <T extends string>({
+const Select = <T extends unknown>({
     title,
     value,
     setValue,

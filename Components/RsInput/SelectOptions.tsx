@@ -12,7 +12,7 @@ type Props<T> = {
     list: { value: T; title: string }[];
 };
 
-const SelectOptions = <T extends string>({
+const SelectOptions = <T extends unknown>({
     element,
     open,
     onClose,
