@@ -9,7 +9,7 @@ type Props<T> = {
     onChange?: (v: T) => void;
     disabled?: boolean;
     readOnly?: boolean;
-    type?: 'text' | 'password';
+    type?: 'text' | 'password' | 'number';
 };
 
 const RsInput = <T extends string>({
