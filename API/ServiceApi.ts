@@ -46,11 +46,6 @@ export class ServiceApi extends BaseApi {
         return JSON.parse(res);
     };
 
-    getPublicSet = async (setId: number): Promise<TBannerSetExport> => {
-        const res = await this.send('GET', `sets/public/${setId}`);
-        return JSON.parse(res);
-    };
-
     /**********************************************************************************
      ************    Images
      **********************************************************************************/
