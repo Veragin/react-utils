@@ -1,4 +1,4 @@
-const COLOR = {
+export const COLOR = {
     PRIMARY: { r: 204, g: 68, b: 255, a: 1 },
     SECONDARY: { r: 68, g: 87, b: 255, a: 1 },
     BACKGROUND: { r: 244, g: 248, b: 255, a: 1 },
@@ -9,5 +9,3 @@ const COLOR = {
     GRAY: { r: 230, g: 230, b: 230, a: 1 },
     BLACK: { r: 0, g: 0, b: 0, a: 1 },
 };
-
-export default COLOR;
