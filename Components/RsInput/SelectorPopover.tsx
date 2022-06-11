@@ -1,7 +1,6 @@
 import { borderRadiusCss, spacingCss } from 'react-utils/Components/globalCss';
 
 import { Popover } from '@mui/material';
-import React from 'react';
 import styled from 'styled-components';
 
 type Props = {

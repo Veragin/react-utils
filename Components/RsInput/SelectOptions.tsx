@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import React from 'react';
 import SelectorPopover from './SelectorPopover';
 
 type Props<T> = {

@@ -1,6 +1,5 @@
 import { InputLabel, InputTitle, inputCss } from './InputCss';
 
-import React from 'react';
 import styled from 'styled-components';
 
 type Props<T> = {

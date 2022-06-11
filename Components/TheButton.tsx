@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 
 import { DeleteIcon } from './Icons';
-import React from 'react';
 import { Tooltip } from '@mui/material';
 import { spacingCss } from './globalCss';
 

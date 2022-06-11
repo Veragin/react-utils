@@ -3,7 +3,6 @@ import {
     TheSecondaryButton,
 } from 'react-utils/Components/TheButton';
 
-import React from 'react';
 import { Row } from 'react-utils/Components/StyledComponents';
 import { RsModal } from 'react-utils/Components/RsModal';
 import { Typography } from '@mui/material';

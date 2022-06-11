@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import React from 'react';
 import { Row } from './StyledComponents';
 import { Typography } from '@mui/material';
 

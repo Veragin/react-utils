@@ -1,5 +1,5 @@
 import { InputLabel, InputTitle, inputCss } from './InputCss';
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import { Row } from '../StyledComponents';

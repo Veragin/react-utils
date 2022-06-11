@@ -2,7 +2,6 @@ import { Backdrop, Modal, Typography } from '@mui/material';
 import { borderRadiusCss, spacingCss } from './globalCss';
 
 import { Column } from './StyledComponents';
-import React from 'react';
 import styled from 'styled-components';
 
 type Props = {

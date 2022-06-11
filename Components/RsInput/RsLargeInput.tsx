@@ -1,6 +1,5 @@
 import { borderRadiusCss, spacingCss } from '../globalCss';
 
-import React from 'react';
 import { inputCss } from './InputCss';
 import styled from 'styled-components';
 

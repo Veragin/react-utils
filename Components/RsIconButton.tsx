@@ -1,7 +1,5 @@
 import { IconButton, Tooltip } from '@mui/material';
 
-import React from 'react';
-
 type Props = {
     tooltip: string;
     onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
