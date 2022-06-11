@@ -1,14 +1,18 @@
-import { DeepPartial } from './Const/Types';
+import { DeepPartial } from "./Const/Types";
 
 export const range = (n: number): number[] => [...(Array(n) as any).keys()];
 
 export const getUniqueId = () => Math.random();
 
+export const generateRandomId = () => {
+    return Math.floor(Math.random() * Math.pow(10, 15));
+};
+
 export const applyDeepPartial = <T extends Object>(obj: T, pobj: DeepPartial<T>): T => {
     return Object.entries(obj).reduce((acc, [key, value]) => {
         if (!(key in pobj)) return { ...acc, [key]: value };
         if (
-            typeof (pobj as any)[key] === 'object' &&
+            typeof (pobj as any)[key] === "object" &&
             (pobj as any)[key] !== null &&
             !Array.isArray((pobj as any)[key])
         ) {
