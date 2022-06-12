@@ -15,7 +15,7 @@ export type TSize = {
     height: number;
 };
 
-export type TColor = null | {
+export type TColor = {
     r: number;
     g: number;
     b: number;
