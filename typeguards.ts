@@ -6,6 +6,10 @@ export function assert(value: boolean, msg: string): asserts value {
     }
 }
 
+export function isNullish<T>(value: T | undefined | null): value is null | undefined {
+    return value === null || value === undefined;
+}
+
 export function assertNotNullish<T>(value: T | undefined | null, msg?: string): asserts value is T {
     assert(value !== null && value !== undefined, msg ?? `Value is not nullish`);
 }
