@@ -1,5 +1,6 @@
 import BaseApi from './BaseApi';
 import { TLanguage } from 'react-utils/LanguageStore';
+import { TUserRole } from 'react-utils/Const/User';
 
 class UserApi extends BaseApi {
     constructor() {
@@ -69,7 +70,6 @@ export type TBillingInfo = {
     accountId: number;
 };
 
-export type TUserRole = 'ADMIN' | 'CONTRIBUTOR' | 'USER' | 'VISITOR';
 export type TSubscriptionType = 'free' | 'vip';
 export type TBillilngFrequency = 'monthly' | 'yearly';
 export type TPaymentState = 'waitingForPayment' | 'paid';
