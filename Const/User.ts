@@ -17,7 +17,7 @@ export const loadUser = (): TUser => {
     return {
         id: Math.random(),
         name: 'Visitor',
-        role: 'ADMIN',
+        role: 'VISITOR',
         token,
     };
 };
