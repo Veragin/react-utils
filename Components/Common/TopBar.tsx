@@ -1,17 +1,17 @@
-import { useUser } from "react-utils/Wrappers/UserWrapper";
+import { useUser } from "../../Wrappers/UserWrapper";
 
 import { Avatar, Typography } from "@mui/material";
 import styled, { css } from "styled-components";
 
-import { AreYouSureModal } from "react-utils/Components/Modals/AreYouSureModal";
-import { Row } from "react-utils/Components/StyledComponents";
+import { AreYouSureModal } from "../Modals/AreYouSureModal";
+import { Row } from "../StyledComponents";
 import logo from "Assets/logo/logo.png";
 import { observer } from "mobx-react";
 import { useState } from "react";
 
 type Props = {
     onHome: () => void;
-    onUserClick: () => void;
+    onUser: () => void;
     logoComp?: React.ReactNode;
     title?: React.ReactNode;
     avatarComp?: React.ReactNode;
@@ -20,7 +20,7 @@ type Props = {
 export const TopBar = observer(
     ({
         onHome,
-        onUserClick,
+        onUser: onUserClick,
         title = null,
         logoComp = null,
         avatarComp = null,
