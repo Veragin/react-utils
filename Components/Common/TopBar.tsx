@@ -1,13 +1,13 @@
-import { useUser } from "../../Wrappers/UserWrapper";
+import { useUser } from '../../Wrappers/UserWrapper';
 
-import { Avatar, Typography } from "@mui/material";
-import styled, { css } from "styled-components";
+import { Avatar, Typography } from '@mui/material';
+import styled, { css } from 'styled-components';
 
-import { AreYouSureModal } from "../Modals/AreYouSureModal";
-import { Row } from "../StyledComponents";
-import logo from "Assets/logo/logo.png";
-import { observer } from "mobx-react";
-import { useState } from "react";
+import { AreYouSureModal } from '../Modals/AreYouSureModal';
+import { Row } from '../StyledComponents';
+import logo from 'Assets/logo/logo.svg';
+import { observer } from 'mobx-react';
+import { useState } from 'react';
 
 type Props = {
     onHome: () => void;
@@ -26,7 +26,7 @@ export const TopBar = observer(
         avatarComp = null,
     }: Props) => {
         const user = useUser();
-        const [openModal, setOpenModal] = useState<"home" | "user" | null>(
+        const [openModal, setOpenModal] = useState<'home' | 'user' | null>(
             null
         );
 
@@ -35,7 +35,7 @@ export const TopBar = observer(
                 <StyledRow>
                     <StyledLogo
                         src={logo}
-                        onClick={() => setOpenModal("home")}
+                        onClick={() => setOpenModal('home')}
                     />
                     {logoComp}
                 </StyledRow>
@@ -44,7 +44,7 @@ export const TopBar = observer(
                 <StyledRow>
                     {avatarComp}
                     <StyledAvatar
-                        onClick={() => setOpenModal("user")}
+                        onClick={() => setOpenModal('user')}
                         src={user.imageUrl}
                     />
                 </StyledRow>
@@ -52,9 +52,9 @@ export const TopBar = observer(
                 <AreYouSureModal
                     open={!!openModal}
                     onClose={() => setOpenModal(null)}
-                    msg={_("You will lose all current changes.")}
-                    yesTitle={_("Leave")}
-                    onSubmit={openModal === "home" ? onHome : onUserClick}
+                    msg={_('You will lose all current changes.')}
+                    yesTitle={_('Leave')}
+                    onSubmit={openModal === 'home' ? onHome : onUserClick}
                 />
             </StyledBar>
         );
