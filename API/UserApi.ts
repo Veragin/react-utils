@@ -12,6 +12,11 @@ class UserApi extends BaseApi {
         return JSON.parse(res);
     };
 
+    setUserInfo = async (info: TUserInfo): Promise<void> => {
+        const res = await this.send('PUT', 'users', info);
+        return JSON.parse(res);
+    };
+
     deleteUser = async (): Promise<void> => {
         await this.send('DELETE', 'users');
     };
@@ -45,6 +50,10 @@ class UserApi extends BaseApi {
             xhr.send(JSON.stringify({ username: email, password }));
         });
     };
+
+    resetPassword = async (email: string): Promise<void> => {
+        await this.send('PATCH', 'users/resetPassword', { email });
+    };
 }
 
 export type TUserInfo = {
@@ -52,7 +61,7 @@ export type TUserInfo = {
     accountDetails: TAccountDetails;
     billingInfo: TBillingInfo;
     contributorInfo: TContributorInfo | null;
-    researchDetails: null;
+    researchDetails: TResearchDetails | null;
 };
 
 export type TAccountDetails = {
@@ -61,7 +70,7 @@ export type TAccountDetails = {
     roles: TUserRole[];
     image: string | null;
     language: TLanguage;
-
+    banned: boolean;
     profession: string;
 };
 
@@ -83,6 +92,10 @@ export type TPaymentState = 'waitingForPayment' | 'paid';
 export type TUserPassword = {
     newPassword: string;
     oldPassword: string;
+};
+
+type TResearchDetails = {
+    banned: boolean;
 };
 
 export default UserApi;
