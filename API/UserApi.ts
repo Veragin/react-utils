@@ -70,7 +70,6 @@ export type TAccountDetails = {
     roles: TUserRole[];
     image: string | null;
     language: TLanguage;
-    banned: boolean;
     profession: string;
 };
 
