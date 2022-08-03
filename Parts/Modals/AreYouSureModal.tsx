@@ -1,12 +1,12 @@
 import {
     ThePrimaryButton,
     TheSecondaryButton,
-} from 'react-utils/Components/TheButton';
+} from "../../Components/TheButton";
 
-import { Row } from 'react-utils/Components/StyledComponents';
-import { RsModal } from 'react-utils/Components/RsModal';
-import { Typography } from '@mui/material';
-import styled from 'styled-components';
+import { Row } from "../../Components/StyledComponents";
+import { RsModal } from "../../Components/RsModal";
+import { Typography } from "@mui/material";
+import styled from "styled-components";
 
 type Props = {
     open: boolean;
@@ -28,11 +28,11 @@ export const AreYouSureModal = ({
     noTitle,
 }: Props) => {
     return (
-        <RsModal open={open} title={title ?? _('Warning')} onClose={onClose}>
+        <RsModal open={open} title={title ?? _("Warning")} onClose={onClose}>
             <StyledMsg>{msg}</StyledMsg>
             <StyledRow>
                 <TheSecondaryButton onClick={onClose}>
-                    {noTitle ?? _('Close')}
+                    {noTitle ?? _("Close")}
                 </TheSecondaryButton>
                 <ThePrimaryButton
                     onClick={() => {
@@ -40,7 +40,7 @@ export const AreYouSureModal = ({
                         onClose();
                     }}
                 >
-                    {yesTitle ?? _('Yes')}
+                    {yesTitle ?? _("Yes")}
                 </ThePrimaryButton>
             </StyledRow>
         </RsModal>
