@@ -1,9 +1,9 @@
 export type TUser = {
     id: number;
     name: string;
-    role: TUserRole;
+    roles: TUserRole[];
     token: string | null;
-    imageUrl?: string;
+    imageUrl: string | null;
 };
 
 export type TUserRole = "ADMIN" | "CONTRIBUTOR" | "USER" | "VISITOR";

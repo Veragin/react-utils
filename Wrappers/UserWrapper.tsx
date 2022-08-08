@@ -1,6 +1,7 @@
 import { TUser } from "../Const/User";
 import { createSafeContext } from "../basic/createSafeContext";
 import { useEffect, useState } from "react";
+import UserApi from "../API/UserApi";
 
 export const [userContext, useUser] = createSafeContext<TUser>("user");
 
@@ -18,14 +19,17 @@ export const UserWrapper = ({ children }: Props) => {
     return <userContext.Provider value={user}>{children}</userContext.Provider>;
 };
 
-const loadUser = (): TUser => {
+const loadUser = async (): Promise<TUser> => {
     const token = localStorage.getItem("token");
 
+    const api = new UserApi();
+    const info = await api.getUserInfo();
+
     return {
-        id: Math.random(),
-        name: "Visitor",
-        role: "VISITOR",
+        id: info.accountId,
+        name: info.accountDetails.name ?? "",
+        roles: info.accountDetails.roles,
         token,
-        imageUrl: undefined,
+        imageUrl: info.accountDetails.image,
     };
 };
