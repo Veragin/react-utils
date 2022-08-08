@@ -1,48 +1,48 @@
-import BaseApi from './BaseApi';
-import { TLanguage } from 'react-utils/LanguageStore';
-import { TUserRole } from 'react-utils/Const/User';
+import BaseApi from "./BaseApi";
+import { TLanguage } from "react-utils/LanguageStore";
+import { TUserRole } from "react-utils/Const/User";
 
 class UserApi extends BaseApi {
     constructor() {
-        super('https://resaizer.eu/user/v1/');
+        super("https://sizefire.eu/user/v1/");
     }
 
     getUserInfo = async (): Promise<TUserInfo> => {
-        const res = await this.send('GET', 'users');
+        const res = await this.send("GET", "users");
         return JSON.parse(res);
     };
 
     setUserInfo = async (info: TUserInfo): Promise<void> => {
-        const res = await this.send('PUT', 'users', info);
+        const res = await this.send("PUT", "users", info);
         return JSON.parse(res);
     };
 
     deleteUser = async (): Promise<void> => {
-        await this.send('DELETE', 'users');
+        await this.send("DELETE", "users");
     };
 
     changePassword = async (pass: TUserPassword): Promise<void> => {
-        await this.send('PATCH', 'users/password', pass);
+        await this.send("PATCH", "users/password", pass);
     };
 
     loginUser = async (email: string, password: string) => {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
-            xhr.open('POST', 'https://resaizer.eu/user/login', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.open("POST", "https://resaizer.eu/user/login", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
             xhr.withCredentials = true;
 
             xhr.onloadend = () => {
                 if (Math.floor(xhr.status / 100) !== 2) {
                     reject(xhr.response);
                 } else {
-                    const authToken = xhr.getResponseHeader('x-auth-token');
+                    const authToken = xhr.getResponseHeader("x-auth-token");
                     if (authToken) {
                         // save autToken to localStorage
-                        localStorage.setItem('token', authToken);
+                        localStorage.setItem("token", authToken);
                         resolve(true);
                     } else {
-                        reject('No auth token found in headers.');
+                        reject("No auth token found in headers.");
                     }
                 }
             };
@@ -52,7 +52,7 @@ class UserApi extends BaseApi {
     };
 
     resetPassword = async (email: string): Promise<void> => {
-        await this.send('PATCH', 'users/resetPassword', { email });
+        await this.send("PATCH", "users/resetPassword", { email });
     };
 }
 
@@ -84,9 +84,9 @@ export type TContributorInfo = {
     bankNumber: number;
 };
 
-export type TSubscriptionPlan = 'free' | 'vip';
-export type TBillilngFrequency = 'monthly' | 'yearly';
-export type TPaymentState = 'waitingForPayment' | 'paid';
+export type TSubscriptionPlan = "free" | "vip";
+export type TBillilngFrequency = "monthly" | "yearly";
+export type TPaymentState = "waitingForPayment" | "paid";
 
 export type TUserPassword = {
     newPassword: string;

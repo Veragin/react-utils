@@ -45,7 +45,7 @@ export const TopBar = observer(
                     {avatarComp}
                     <StyledAvatar
                         onClick={() => setOpenModal("user")}
-                        src={user.imageUrl}
+                        src={user.imageUrl ?? undefined}
                     />
                 </StyledRow>
 

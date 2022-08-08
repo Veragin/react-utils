@@ -10,11 +10,18 @@ type Props = {
 };
 
 export const UserWrapper = ({ children }: Props) => {
-    const [user, setUser] = useState(loadUser());
+    const [user, setUser] = useState<null | TUser>(null);
 
     useEffect(() => {
-        window.updateUser = () => setUser(loadUser);
+        const load = async () => {
+            setUser(await loadUser());
+        };
+
+        window.updateUser = load;
+        load();
     }, [setUser]);
+
+    if (user === null) return null;
 
     return <userContext.Provider value={user}>{children}</userContext.Provider>;
 };
