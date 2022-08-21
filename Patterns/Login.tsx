@@ -1,13 +1,13 @@
-import { RsAlert, TAlert } from '../Components/RsAlert';
-import { borderRadiusCss, spacingCss } from '../Components/globalCss';
+import { RsAlert, TAlert } from "../Components/RsAlert";
+import { borderRadiusCss, spacingCss } from "../Components/globalCss";
 
-import { Column } from '../Components/StyledComponents';
-import RsLargeInput from '../Components/RsInput/RsLargeInput';
-import { ThePrimaryButton } from '../Components/TheButton';
-import { Typography } from '@mui/material';
-import UserApi from '../API/UserApi';
-import styled from 'styled-components';
-import { useState } from 'react';
+import { Column } from "../Components/StyledComponents";
+import RsLargeInput from "../Components/RsInput/RsLargeInput";
+import { ThePrimaryButton } from "../Components/TheButton";
+import { Typography } from "@mui/material";
+import UserApi from "../API/UserApi";
+import styled from "styled-components";
+import { useState } from "react";
 
 type Props = {
     onLogin: () => void;
@@ -15,23 +15,23 @@ type Props = {
 };
 
 const Login = ({ onLogin, msg }: Props) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [alert, setAlert] = useState<TAlert>(msg ? { msg } : null);
     const [api] = useState(new UserApi());
 
     const onLoginHandler = async () => {
-        if (email === '') {
+        if (email === "") {
             return setAlert({
-                msg: _('Please fill up your email.'),
-                severity: 'warning',
+                msg: _("Please fill up your email."),
+                severity: "warning",
             });
         }
 
-        if (password === '') {
+        if (password === "") {
             return setAlert({
-                msg: _('Please fill up your password.'),
-                severity: 'warning',
+                msg: _("Please fill up your password."),
+                severity: "warning",
             });
         }
 
@@ -39,7 +39,7 @@ const Login = ({ onLogin, msg }: Props) => {
             await api.loginUser(email, password);
         } catch (e) {
             console.log(e);
-            return setAlert({ msg: _('Your email or password is wrong') });
+            return setAlert({ msg: _("Your email or password is wrong") });
         }
 
         onLogin();
@@ -48,21 +48,21 @@ const Login = ({ onLogin, msg }: Props) => {
     return (
         <StyledCont>
             <StyledColumn>
-                <Typography variant="h3">{_('Login')}</Typography>
+                <Typography variant="h3">{_("Login")}</Typography>
                 <RsAlert alert={alert} onClose={() => setAlert(null)} />
                 <RsLargeInput
-                    title={_('Email')}
+                    title={_("Email")}
                     value={email}
                     setValue={setEmail}
                 />
                 <RsLargeInput
-                    title={_('Password')}
+                    title={_("Password")}
                     value={password}
                     setValue={setPassword}
                     type="password"
                 />
                 <ThePrimaryButton onClick={onLoginHandler}>
-                    {_('Login')}
+                    {_("Login")}
                 </ThePrimaryButton>
             </StyledColumn>
         </StyledCont>
