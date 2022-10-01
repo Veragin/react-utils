@@ -15,6 +15,7 @@ type Props = {
     logoComp?: React.ReactNode;
     title?: React.ReactNode;
     avatarComp?: React.ReactNode;
+    darkMode?: boolean;
 };
 
 export const TopBar = observer(
@@ -24,19 +25,15 @@ export const TopBar = observer(
         title = null,
         logoComp = null,
         avatarComp = null,
+        darkMode,
     }: Props) => {
         const user = useUser();
-        const [openModal, setOpenModal] = useState<"home" | "user" | null>(
-            null
-        );
+        const [openModal, setOpenModal] = useState<"home" | "user" | null>(null);
 
         return (
-            <StyledBar>
+            <StyledBar $darkMode={darkMode}>
                 <StyledRow>
-                    <StyledLogo
-                        src={logo}
-                        onClick={() => setOpenModal("home")}
-                    />
+                    <StyledLogo src={logo} onClick={() => setOpenModal("home")} />
                     {logoComp}
                 </StyledRow>
                 <StyledTitle variant="h6">{title}</StyledTitle>
@@ -66,16 +63,17 @@ const StyledLogo = styled.img`
     cursor: pointer;
 `;
 
-const StyledBar = styled(Row)`
+const StyledBar = styled(Row)<{ $darkMode?: boolean }>`
     position: relative;
     height: 42px;
     align-items: center;
     justify-content: space-between;
-    background-color: white;
-    ${({ theme }) => css`
+    ${({ theme, $darkMode }) => css`
+        background-color: ${$darkMode ? theme.palette.backgr.dark : "white"};
         width: calc(100% - ${theme.spacing(4)});
         padding: ${theme.spacing(1)} ${theme.spacing(2)};
-        border-bottom: 2px solid ${theme.palette.input.default};
+        border-bottom: 2px solid
+            ${$darkMode ? theme.palette.primary.main : theme.palette.input.default};
     `}
 `;
 
