@@ -1,10 +1,10 @@
-import { InputLabel, InputTitle, inputCss } from './InputCss';
-import { useRef, useState } from 'react';
+import { InputLabel, InputTitle, inputCss } from "./InputCss";
+import { useRef, useState } from "react";
 
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import { Row } from '../StyledComponents';
-import SelectOptions from './SelectOptions';
-import styled from 'styled-components';
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import { Row } from "../StyledComponents";
+import SelectOptions from "./SelectOptions";
+import styled from "styled-components";
 
 type Props<T> = {
     title: string;
@@ -13,12 +13,7 @@ type Props<T> = {
     readonly list: { readonly value: T; readonly title: string }[];
 };
 
-const Select = <T extends unknown>({
-    title,
-    value,
-    setValue,
-    list,
-}: Props<T>) => {
+const RsSelect = <T extends unknown>({ title, value, setValue, list }: Props<T>) => {
     const [open, setOpen] = useState(false);
     const anchor = useRef<HTMLDivElement>(null);
 
@@ -33,7 +28,7 @@ const Select = <T extends unknown>({
         <InputLabel onClick={onOpen}>
             <InputTitle>{title}</InputTitle>
             <StyledSelect ref={anchor} $isFocused={open}>
-                {selectedItem?.title ?? _('Choose one')}
+                {selectedItem?.title ?? _("Choose one")}
                 <StyledArrow />
             </StyledSelect>
             <SelectOptions
@@ -60,7 +55,7 @@ const StyledSelect = styled(Row)<{ $isFocused: boolean }>`
             border: 2px solid ${theme.palette.primary.main};
             background-color: ${theme.palette.input.hover};
         `
-            : ''}
+            : ""}
 `;
 
 const StyledArrow = styled(KeyboardArrowDownRoundedIcon)`
@@ -69,4 +64,4 @@ const StyledArrow = styled(KeyboardArrowDownRoundedIcon)`
     }
 `;
 
-export default Select;
+export default RsSelect;
