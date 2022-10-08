@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-import { spacingCss } from '../globalCss';
+import { spacingCss } from "../globalCss";
 
 export const inputCss = css`
     ${({ theme }) => css`
