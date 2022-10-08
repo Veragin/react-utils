@@ -39,11 +39,3 @@ export const InputLabel = styled.label`
     flex-direction: column;
     row-gap: ${spacingCss(0.5)};
 `;
-
-export const InputTitle = styled.span`
-    color: ${({ theme }) => theme.palette.secondary.main};
-    user-select: none;
-    font-size: 10px;
-    text-transform: uppercase;
-    font-weight: 600;
-`;

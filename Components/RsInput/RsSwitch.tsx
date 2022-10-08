@@ -1,18 +1,20 @@
-import { InputLabel, InputTitle } from "./InputCss";
+import { InputLabel } from "./InputCss";
 
 import { Switch } from "@mui/material";
+import { InputTitle } from "./InputTitle";
 
 type Props = {
     title: string;
     value: boolean;
     onChange?: (v: boolean) => void;
     disabled?: boolean;
+    helpTooltip?: string;
 };
 
-export const RsSwitch = ({ title, value, onChange, disabled }: Props) => {
+export const RsSwitch = ({ title, value, onChange, disabled, helpTooltip }: Props) => {
     return (
         <InputLabel>
-            <InputTitle>{title}</InputTitle>
+            <InputTitle helpTitle={helpTooltip}>{title}</InputTitle>
             <Switch
                 value={value}
                 onChange={(e) => onChange?.(e.target.value === "false")}
