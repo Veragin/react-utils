@@ -35,4 +35,5 @@ export const RsFile = ({ title, onChange, disabled, selectedCount, multiple, acc
 const StyledRow = styled(Row)`
     gap: ${spacingCss(1)};
     align-items: center;
+    font-size: 14px;
 `;
