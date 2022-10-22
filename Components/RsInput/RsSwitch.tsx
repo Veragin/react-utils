@@ -16,8 +16,10 @@ export const RsSwitch = ({ title, value, onChange, disabled, helpTooltip }: Prop
         <InputLabel>
             <InputTitle helpTitle={helpTooltip}>{title}</InputTitle>
             <Switch
-                value={value}
-                onChange={(e) => onChange?.(e.target.value === "false")}
+                checked={value}
+                onChange={(e) => {
+                    onChange?.(e.target.checked);
+                }}
                 disabled={disabled}
             />
         </InputLabel>
