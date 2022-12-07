@@ -8,7 +8,7 @@ const theme = createTheme({
         caption: {
             fontSize: 20,
         },
-        fontFamily: ["Roboto"].join(","),
+        fontFamily: ["Poppins"].join(","),
     },
     palette: {
         primary: {
