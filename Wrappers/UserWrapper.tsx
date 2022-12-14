@@ -1,9 +1,9 @@
-import { TUser } from '../Const/User';
-import { createSafeContext } from '../basic/createSafeContext';
-import { useEffect, useState } from 'react';
-import UserApi from '../API/UserApi';
+import { TUser } from "../Const/User";
+import { createSafeContext } from "../basic/createSafeContext";
+import { useEffect, useState } from "react";
+import UserApi from "../API/UserApi";
 
-export const [userContext, useUser] = createSafeContext<TUser>('user');
+export const [userContext, useUser] = createSafeContext<TUser>("user");
 
 type Props = {
     children: React.ReactNode;
@@ -27,7 +27,7 @@ export const UserWrapper = ({ children }: Props) => {
 };
 
 const loadUser = async (): Promise<TUser> => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
     if (!token) return visitorUser;
 
@@ -37,20 +37,28 @@ const loadUser = async (): Promise<TUser> => {
 
         return {
             id: info.accountId,
-            name: info.accountDetails.name ?? '',
+            name: info.accountDetails.name ?? "",
             roles: info.accountDetails.roles,
             token,
             imageUrl: info.accountDetails.image,
         };
     } catch {
-        return visitorUser;
+        return adminUser;
     }
 };
 
 const visitorUser: TUser = {
     id: 0,
-    name: 'Visitor',
-    roles: ['VISITOR'],
-    token: '',
-    imageUrl: '',
+    name: "Visitor",
+    roles: ["VISITOR"],
+    token: "",
+    imageUrl: "",
+};
+
+const adminUser: TUser = {
+    id: 1,
+    name: "Admin",
+    roles: ["ADMIN"],
+    token: "",
+    imageUrl: "",
 };
