@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
-import { spacingCss } from '../globalCss';
+import { spacingCss } from "../globalCss";
 
 export const inputCss = css`
     ${({ theme }) => css`
@@ -38,12 +38,4 @@ export const InputLabel = styled.label`
     display: flex;
     flex-direction: column;
     row-gap: ${spacingCss(0.5)};
-`;
-
-export const InputTitle = styled.span`
-    color: ${({ theme }) => theme.palette.secondary.main};
-    user-select: none;
-    font-size: 10px;
-    text-transform: uppercase;
-    font-weight: 600;
 `;

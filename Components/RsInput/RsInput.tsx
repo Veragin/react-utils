@@ -1,6 +1,7 @@
-import { InputLabel, InputTitle, inputCss } from './InputCss';
+import { InputLabel, inputCss } from "./InputCss";
 
-import styled from 'styled-components';
+import styled from "styled-components";
+import { InputTitle } from "./InputTitle";
 
 type Props<T> = {
     title: string;
@@ -8,7 +9,8 @@ type Props<T> = {
     onChange?: (v: T) => void;
     disabled?: boolean;
     readOnly?: boolean;
-    type?: 'text' | 'password' | 'number';
+    type?: "text" | "password" | "number";
+    helpTooltip?: string;
 };
 
 const RsInput = <T extends string>({
@@ -18,10 +20,11 @@ const RsInput = <T extends string>({
     disabled,
     readOnly,
     type,
+    helpTooltip,
 }: Props<T>) => {
     return (
         <InputLabel>
-            <InputTitle>{title}</InputTitle>
+            <InputTitle helpTitle={helpTooltip}>{title}</InputTitle>
             <StyledInput
                 value={value}
                 onChange={(e) => onChange?.(e.target.value as T)}

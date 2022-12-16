@@ -1,11 +1,11 @@
-import { Column, Row } from 'react-utils/Components/StyledComponents';
+import { Column, Row } from "react-utils/Components/StyledComponents";
 
-import { observer } from 'mobx-react';
-import styled from 'styled-components';
-import { ReactElement } from 'react';
-import { TopBar } from 'react-utils/Patterns/TopBar';
-import { Tab, Tabs } from '@mui/material';
-import { spacingCss } from 'react-utils/Components/globalCss';
+import { observer } from "mobx-react";
+import styled from "styled-components";
+import { ReactElement } from "react";
+import { TopBar } from "react-utils/Patterns/TopBar";
+import { Tab, Tabs } from "@mui/material";
+import { spacingCss } from "react-utils/Components/globalCss";
 
 export type TOption<T> = {
     label: string;
@@ -26,12 +26,7 @@ type MenuBoardProps<T> = Props<T> & {
 };
 
 export const MenuBoard = observer(
-    <T extends string>({
-        onHome,
-        onUser,
-        title,
-        ...props
-    }: MenuBoardProps<T>) => {
+    <T extends string>({ onHome, onUser, title, ...props }: MenuBoardProps<T>) => {
         return (
             <StyledColumn>
                 <TopBar onHome={onHome} onUser={onUser} title={title} />
@@ -62,11 +57,11 @@ const Menu = <T extends string>({ selected, options, onChange }: Props<T>) => {
             variant="scrollable"
             value={selected}
             onChange={(e, v) => onChange(v)}
-            sx={{ borderRight: 1, borderColor: 'divider' }}
+            sx={{ borderRight: 1, borderColor: "divider" }}
             color="secondary"
         >
             {options.map((item, i) => (
-                <Tab label={item.label} value={item.value} key={i} />
+                <StyledTab label={item.label} value={item.value} key={i} />
             ))}
         </StyledTabs>
     );
@@ -77,9 +72,14 @@ const StyledTabs = styled(Tabs)`
     height: 100%;
 `;
 
+const StyledTab = styled(Tab)`
+    align-items: start;
+    color: black;
+    padding: ${spacingCss(2)};
+`;
+
 const Board = <T extends string>({ selected, options }: Props<T>) => {
-    const selectedContent =
-        options.find((item) => item.value === selected)?.content ?? null;
+    const selectedContent = options.find((item) => item.value === selected)?.content ?? null;
 
     return (
         <StyledCont>

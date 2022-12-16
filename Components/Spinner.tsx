@@ -1,9 +1,19 @@
-import styled from 'styled-components';
+import { Typography } from "@mui/material";
+import styled from "styled-components";
+import { borderRadiusCss, spacingCss } from "./globalCss";
+import { Column } from "./StyledComponents";
 
-export const Spinner = () => {
+type Props = {
+    msg?: string;
+};
+
+export const Spinner = ({ msg }: Props) => {
     return (
         <StyledContainer>
-            <StyledSpin />
+            <StyledColumn>
+                <StyledSpin />
+                <Typography>{msg}</Typography>
+            </StyledColumn>
         </StyledContainer>
     );
 };
@@ -19,10 +29,24 @@ const StyledContainer = styled.div`
     height: 100vh;
 `;
 
+const StyledColumn = styled(Column)`
+    padding: ${spacingCss(2)};
+    border-radius: ${borderRadiusCss(2)};
+    background-color: white;
+    min-width: 150px;
+    max-width: 30%;
+    gap: ${spacingCss(2)};
+
+    justify-content: center;
+    align-items: center;
+    position: relative;
+`;
+
 const StyledSpin = styled.div`
     &,
     &:before,
     &:after {
+        top: -2.5em;
         border-radius: 50%;
         width: 2.5em;
         height: 2.5em;
@@ -32,15 +56,13 @@ const StyledSpin = styled.div`
     & {
         color: ${({ theme }) => theme.palette.primary.main};
         font-size: 10px;
-        margin: 80px auto;
         position: relative;
-        text-indent: -9999em;
         transform: translateZ(0);
         animation-delay: -0.16s;
     }
     &:before,
     &:after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
     }
