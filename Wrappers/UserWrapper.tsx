@@ -1,7 +1,7 @@
 import { TUser } from "../Const/User";
 import { createSafeContext } from "../basic/createSafeContext";
-import { useEffect, useState } from "react";
 import UserApi from "../API/UserApi";
+import { useQuery } from "react-query";
 
 export const [userContext, useUser] = createSafeContext<TUser>("user");
 
@@ -10,22 +10,21 @@ type Props = {
 };
 
 export const UserWrapper = ({ children }: Props) => {
-    const [user, setUser] = useState<null | TUser>(null);
+    const { isLoading, refetch, data: user } = useQuery<TUser>("loadUser", updateUser);
 
-    useEffect(() => {
-        const load = async () => {
-            const user = await loadUser();
-            currentUser.user = user;
-            setUser(user);
-        };
+    window.updateUser = async () => {
+        refetch();
+    };
 
-        window.updateUser = load;
-        load();
-    }, [setUser]);
+    if (isLoading) return null;
 
-    if (user === null) return null;
+    return <userContext.Provider value={user ?? visitorUser}>{children}</userContext.Provider>;
+};
 
-    return <userContext.Provider value={user}>{children}</userContext.Provider>;
+const updateUser = async (): Promise<TUser> => {
+    const user = await loadUser();
+    currentUser.user = user;
+    return user;
 };
 
 const loadUser = async (): Promise<TUser> => {
