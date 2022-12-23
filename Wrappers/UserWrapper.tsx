@@ -1,7 +1,8 @@
 import { TUser } from "../Const/User";
 import { createSafeContext } from "../basic/createSafeContext";
-import UserApi from "../API/UserApi";
+import { UserApi } from "../API/UserApi";
 import { useQuery } from "react-query";
+import { Spinner } from "react-utils/Components/Spinner";
 
 export const [userContext, useUser] = createSafeContext<TUser>("user");
 
@@ -16,7 +17,7 @@ export const UserWrapper = ({ children }: Props) => {
         refetch();
     };
 
-    if (isLoading) return null;
+    if (isLoading) return <Spinner msg={_("Logging in")} />;
 
     return <userContext.Provider value={user ?? visitorUser}>{children}</userContext.Provider>;
 };
@@ -32,20 +33,20 @@ const loadUser = async (): Promise<TUser> => {
 
     if (!token) return visitorUser;
 
-    try {
-        const api = new UserApi();
-        const info = await api.getUserInfo();
+    //try {
+    const api = new UserApi();
+    const info = await api.getUserInfo();
 
-        return {
-            id: info.accountId,
-            name: info.accountDetails.name ?? "",
-            roles: info.accountDetails.roles,
-            token,
-            imageUrl: info.accountDetails.image,
-        };
-    } catch {
+    return {
+        id: info.accountId,
+        name: info.accountDetails.name ?? "",
+        roles: info.accountDetails.roles,
+        token,
+        imageUrl: info.accountDetails.image,
+    };
+    /*  } catch {
         return adminUser;
-    }
+    }*/
 };
 
 const visitorUser: TUser = {

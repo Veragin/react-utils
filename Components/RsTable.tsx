@@ -1,56 +1,49 @@
-import { BoardPaper } from '../Patterns/BoardPaper';
-import { spacingCss } from './globalCss';
-import styled from 'styled-components';
-import { useState } from 'react';
-import { Button } from '@mui/material';
-import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
+import { spacingCss } from "./globalCss";
+import styled from "styled-components";
+import { useState } from "react";
+import { Button } from "@mui/material";
+import FilterAltRoundedIcon from "@mui/icons-material/FilterAltRounded";
 
-type Props<T extends string, Data extends Record<T, any>> = {
+type Props<T extends string, Sortable extends T[], Data extends Record<Sortable[number], any>> = {
     data: Data[];
     CustomRow: React.FC<{ data: Data }>;
     headerNames: Record<T, string>;
-    sortable: T[];
+    sortable: Sortable;
 };
 
-export const RsTable = <T extends string, Data extends Record<T, any>>({
+export const RsTable = <
+    T extends string,
+    Sortable extends T[],
+    Data extends Record<Sortable[number], any>
+>({
     data,
     CustomRow,
     headerNames,
     sortable,
-}: Props<T, Data>) => {
+}: Props<T, Sortable, Data>) => {
     const [sort, setSort] = useState<T | null>(null);
 
-    const sortedData = [...data];
-    const sortFunc = getSortFunction(sort);
-    if (sortFunc) {
-        sortedData.sort(sortFunc);
-    }
+    const sortedData = getSortedData(data, sort);
 
     const columnCount = Object.keys(headerNames).length;
 
     return (
-        <BoardPaper>
-            <StyledTable $columnCount={columnCount}>
-                <TableHeader
-                    sort={sort}
-                    setSort={setSort}
-                    headers={headerNames}
-                    sortable={sortable}
-                />
-                {sortedData.map((d, i) => (
-                    <CustomRow key={i} data={d} />
-                ))}
-            </StyledTable>
-        </BoardPaper>
+        <StyledTable $columnCount={columnCount}>
+            <TableHeader sort={sort} setSort={setSort} headers={headerNames} sortable={sortable} />
+            {sortedData.map((d, i) => (
+                <CustomRow key={i} data={d} />
+            ))}
+        </StyledTable>
     );
 };
 
 const StyledTable = styled.div<{ $columnCount: number }>`
     width: 100%;
     row-gap: ${spacingCss(2)};
+    column-gap: ${spacingCss(1)};
     display: grid;
-    grid-template-columns: ${({ $columnCount }) =>
-        `repeat(1fr , ${$columnCount})`};
+    grid-template-columns: ${({ $columnCount }) => `repeat(${$columnCount}, 1fr)`};
+    align-items: center;
 `;
 
 type HeaderProps<T extends string> = {
@@ -60,12 +53,7 @@ type HeaderProps<T extends string> = {
     sortable: T[];
 };
 
-const TableHeader = <T extends string>({
-    sort,
-    setSort,
-    headers,
-    sortable,
-}: HeaderProps<T>) => {
+const TableHeader = <T extends string>({ sort, setSort, headers, sortable }: HeaderProps<T>) => {
     const data = Object.keys(headers) as T[];
 
     const onClick = (val: T) => {
@@ -80,17 +68,13 @@ const TableHeader = <T extends string>({
                     <StyledName
                         key={d}
                         onClick={() => onClick(d)}
-                        endIcon={
-                            sortable.includes(d) ? (
-                                <FilterAltRoundedIcon />
-                            ) : undefined
-                        }
+                        endIcon={sortable.includes(d) ? <FilterAltRoundedIcon /> : undefined}
                         $activeFilter={sort === d}
                     >
                         {headers[d]}
                     </StyledName>
                 ) : (
-                    <div />
+                    <div key={d} />
                 )
             )}
         </>
@@ -106,14 +90,30 @@ const StyledName = styled(Button)<{ $activeFilter: boolean }>`
 
     & .MuiSvgIcon-root {
         ${({ theme, $activeFilter }) =>
-            $activeFilter ? `color: ${theme.palette.primary.main};` : ''}
+            $activeFilter ? `color: ${theme.palette.primary.main};` : ""}
     }
 `;
 
-const getSortFunction = <T extends string, Data extends Record<T, any>>(
+const getSortedData = <T extends string, Data extends Record<T, any>>(
+    data: Data[],
     sort: T | null
 ) => {
-    if (sort === null) return;
+    if (sort === null || data.length === 0) return data;
 
-    return (a: Data, b: Data): number => a[sort].localeCompare(b[sort]);
+    const sortedData = [...data];
+    const element = data[0];
+
+    if (typeof element[sort] === "string") {
+        return sortedData.sort((a: Data, b: Data): number => a[sort].localeCompare(b[sort]));
+    }
+
+    if (typeof element[sort] === "number") {
+        return sortedData.sort((a: Data, b: Data): number => a[sort] - b[sort]);
+    }
+
+    if (typeof element[sort] === "boolean") {
+        return sortedData.sort((a: Data, b: Data): number => Number(a[sort]) - Number(b[sort]));
+    }
+
+    return sortedData;
 };

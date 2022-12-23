@@ -1,16 +1,16 @@
-import { parseErrorResponse, parseErrorStatus } from './Errors';
+import { parseErrorResponse, parseErrorStatus } from "./Errors";
 
-class BaseApi {
+export class BaseApi {
     constructor(public baseUrl: string) {}
 
     send(
-        method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
+        method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH",
         url: string,
         data?: any,
         contentType?: string,
         responseType?: XMLHttpRequestResponseType
     ): Promise<any> {
-        const isNotGet = method !== 'GET';
+        const isNotGet = method !== "GET";
         const realUrl = isNotGet ? url : `${url}?${this.paramToUrl(data)}`;
         const realData = isNotGet ? data : undefined;
 
@@ -18,11 +18,12 @@ class BaseApi {
             let xhr = new XMLHttpRequest();
             xhr.open(method, this.baseUrl + realUrl, true);
 
-            if (contentType || isNotGet) xhr.setRequestHeader('Content-Type', contentType ?? 'application/json');
+            if (contentType || isNotGet)
+                xhr.setRequestHeader("Content-Type", contentType ?? "application/json");
             if (responseType) xhr.responseType = responseType;
 
-            const token = localStorage.getItem('token');
-            if (token) xhr.setRequestHeader('x-auth-token', token);
+            const token = localStorage.getItem("token");
+            if (token) xhr.setRequestHeader("x-auth-token", token);
 
             xhr.onloadend = () => {
                 if (Math.floor(xhr.status / 100) !== 2) {
@@ -50,13 +51,14 @@ class BaseApi {
      * return "name1=value1&name2=value2&name3=value3"
      */
     protected paramToUrl(params?: Record<string, string | number | undefined>): string {
-        let output = '';
+        let output = "";
         if (params) {
             let reducer = (res: string, key: string) => {
-                if (params[key] !== undefined) return `${res}${key}=${encodeURIComponent(String(params[key]))}&`;
+                if (params[key] !== undefined)
+                    return `${res}${key}=${encodeURIComponent(String(params[key]))}&`;
                 return res;
             };
-            output = Object.keys(params).reduce(reducer, '');
+            output = Object.keys(params).reduce(reducer, "");
             output = output.slice(0, output.length - 1);
         }
         return output;
@@ -72,9 +74,7 @@ class BaseApi {
      * return "value1,value2,value3"
      */
     protected arrayToUrl(arr: string | string[]): string {
-        if (Array.isArray(arr)) return arr.join(',');
+        if (Array.isArray(arr)) return arr.join(",");
         return arr;
     }
 }
-
-export default BaseApi;

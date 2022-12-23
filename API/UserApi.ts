@@ -1,8 +1,8 @@
-import BaseApi from "./BaseApi";
+import { BaseApi } from "./BaseApi";
 import { TLanguage } from "react-utils/LanguageStore";
 import { TUserRole } from "react-utils/Const/User";
 
-class UserApi extends BaseApi {
+export class UserApi extends BaseApi {
     constructor() {
         super("https://sizefire.eu/user/v1/");
     }
@@ -96,5 +96,3 @@ export type TUserPassword = {
 type TResearchDetails = {
     banned: boolean;
 };
-
-export default UserApi;

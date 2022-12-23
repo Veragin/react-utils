@@ -1,14 +1,11 @@
-import BaseApi from "./BaseApi";
+import { TBannerSetInfo, TBannerSetType } from "react-utils/Const/BannerSet";
+import { BaseApi } from "./BaseApi";
 import { TSubscriptionPlan, TUserInfo } from "./UserApi";
 
-class AdminApi extends BaseApi {
+export class AdminApi extends BaseApi {
     constructor() {
         super("https://sizefire.eu/");
     }
-
-    clearCache = async () => {
-        await this.send("GET", `editor/v1/admin/cache/clearAll`);
-    };
 
     getUserList = async (): Promise<TUserShortInfo> => {
         const res = await this.send("GET", `user/v1/admin/users`);
@@ -37,7 +34,21 @@ class AdminApi extends BaseApi {
     };
 
     deleteSet = async (setId: number) => {
-        await this.send("DELETE", `sets/${setId}`);
+        await this.send("DELETE", `editor/v1/admin/sets/${setId}`);
+    };
+
+    clearCache = async () => {
+        await this.send("GET", `editor/v1/admin/cache/clearAll`);
+    };
+
+    getSetsOverview = async (page: number): Promise<TSetInfo[]> => {
+        const res = await this.send("GET", `editor/v1/admin/sets`, { page });
+        return JSON.parse(res);
+    };
+
+    getSetsCount = async (type?: TBannerSetType): Promise<number> => {
+        const res = await this.send("GET", `editor/v1/admin/sets/count`, { type });
+        return JSON.parse(res).count;
     };
 }
 
@@ -52,4 +63,7 @@ export type TUserShortInfo = {
     privateExported: number;
 };
 
-export default AdminApi;
+export type TSetInfo = TBannerSetInfo & {
+    userId: number;
+    visible: boolean;
+};

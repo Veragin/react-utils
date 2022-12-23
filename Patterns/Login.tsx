@@ -5,7 +5,7 @@ import { Column } from "../Components/StyledComponents";
 import RsLargeInput from "../Components/RsInput/RsLargeInput";
 import { ThePrimaryButton } from "../Components/TheButton";
 import { Typography } from "@mui/material";
-import UserApi from "../API/UserApi";
+import { UserApi } from "../API/UserApi";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -50,20 +50,14 @@ const Login = ({ onLogin, msg }: Props) => {
             <StyledColumn>
                 <Typography variant="h3">{_("Login")}</Typography>
                 <RsAlert alert={alert} onClose={() => setAlert(null)} />
-                <RsLargeInput
-                    title={_("Email")}
-                    value={email}
-                    setValue={setEmail}
-                />
+                <RsLargeInput title={_("Email")} value={email} setValue={setEmail} />
                 <RsLargeInput
                     title={_("Password")}
                     value={password}
                     setValue={setPassword}
                     type="password"
                 />
-                <ThePrimaryButton onClick={onLoginHandler}>
-                    {_("Login")}
-                </ThePrimaryButton>
+                <ThePrimaryButton onClick={onLoginHandler}>{_("Login")}</ThePrimaryButton>
             </StyledColumn>
         </StyledCont>
     );
