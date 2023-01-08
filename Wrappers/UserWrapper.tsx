@@ -14,7 +14,9 @@ export const UserWrapper = ({ children }: Props) => {
 
     useEffect(() => {
         const load = async () => {
-            setUser(await loadUser());
+            const user = await loadUser();
+            currentUser.user = user;
+            setUser(user);
         };
 
         window.updateUser = load;
@@ -62,3 +64,5 @@ const adminUser: TUser = {
     token: "",
     imageUrl: "",
 };
+
+export const currentUser = { user: visitorUser };
