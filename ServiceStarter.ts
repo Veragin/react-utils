@@ -1,4 +1,4 @@
-const baseAddress = "https://sizefire.com/service";
+const baseAddress = "https://admin.sizefire.com/service";
 
 class ServiceStarter {
     createPublicFromScratch = () => {
