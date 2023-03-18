@@ -25,7 +25,7 @@ export class UserApi extends BaseApi {
         await this.send("PATCH", "users/password", pass);
     };
 
-    loginUser = async (email: string, password: string) => {
+    loginUser = (email: string, password: string) => {
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
             xhr.open("POST", "https://sizefire.eu/user/login", true);
