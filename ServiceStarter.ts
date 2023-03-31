@@ -20,7 +20,11 @@ class ServiceStarter {
     };
 
     openDownloadInfo = (setId: number) => {
-        window.open(`${this.baseUrl}?a=info&info=download&setId=${setId}`, '_self');
+        window.open(`${this.baseUrl}?a=info&info=downloadInfo&setId=${setId}`, '_self');
+    };
+
+    openDownloadError = (setId: number) => {
+        window.open(`${this.baseUrl}?a=info&info=downloadError&setId=${setId}`, '_self');
     };
 
     private get baseUrl() {
