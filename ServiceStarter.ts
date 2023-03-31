@@ -20,7 +20,7 @@ class ServiceStarter {
     };
 
     openDownloadInfo = (setId: number) => {
-        window.open(`${baseAddress}?a=info&info=download&setId=${setId}`);
+        window.open(`${baseAddress}?a=info&info=download&setId=${setId}`, '_self');
     };
 }
 
