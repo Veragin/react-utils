@@ -18,6 +18,10 @@ class ServiceStarter {
     downloadTemplate = (setId: number) => {
         window.open(`${baseAddress}?a=service&techTree=TEMPLATE_DOWNLOAD&setId=${setId}`);
     };
+
+    openDownloadInfo = (setId: number) => {
+        window.open(`${baseAddress}?a=info&info=download&setId=${setId}`);
+    };
 }
 
 const serviceStarter = new ServiceStarter();
