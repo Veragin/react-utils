@@ -1,6 +1,8 @@
-const baseAddress = "https://admin.sizefire.com/service";
+const baseAddress = 'https://admin.sizefire.com/service';
 
 class ServiceStarter {
+    toHomePage = () => window.open('https://www.sizefire.com', '_self');
+
     createPublicFromScratch = () => {
         window.open(`${baseAddress}?a=service&techTree=TEMPLATE_MAKER`);
     };
@@ -11,6 +13,10 @@ class ServiceStarter {
 
     editTemplate = (setId: number) => {
         window.open(`${baseAddress}?a=service&techTree=TEMPLATE_EDIT&setId=${setId}`);
+    };
+
+    downloadTemplate = (setId: number) => {
+        window.open(`${baseAddress}?a=service&techTree=TEMPLATE_DOWNLOAD&setId=${setId}`);
     };
 }
 
