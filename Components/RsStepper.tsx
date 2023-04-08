@@ -22,7 +22,7 @@ export const RsStepper = ({ data, step }: Props) => {
                     />
                 ))}
             </SteperHolder>
-            <StyledTitle>{data[step] ?? `unknown`}</StyledTitle>
+            <StyledTitle>{data[step] ?? ``}</StyledTitle>
         </StyledCont>
     );
 };
