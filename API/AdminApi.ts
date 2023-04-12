@@ -41,8 +41,8 @@ export class AdminApi extends BaseApi {
         await this.send("GET", `editor/v1/admin/cache/clearAll`);
     };
 
-    getSetsOverview = async (page: number): Promise<TSetInfo[]> => {
-        const res = await this.send("GET", `editor/v1/admin/sets`, { page });
+    getSetsOverview = async (page: number, type?: TBannerSetType): Promise<TSetInfo[]> => {
+        const res = await this.send("GET", `editor/v1/admin/sets`, { page, type });
         return JSON.parse(res);
     };
 
