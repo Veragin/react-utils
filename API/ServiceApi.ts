@@ -25,18 +25,18 @@ export class ServiceApi extends BaseApi {
     };
 
     createSet = async (data: TBannerSetExport): Promise<number> => {
-        const res = await this.send('POST', `${this.adminUrl}sets`, JSON.stringify(data));
+        const res = await this.send('POST', `sets`, JSON.stringify(data));
         return JSON.parse(res);
     };
 
     updateSet = async (data: TBannerSetExport) => {
-        const res = await this.send('PUT', `${this.adminUrl}sets`, JSON.stringify(data));
-        return JSON.parse(res);
+        //empty response
+        await this.send('PUT', `sets`, JSON.stringify(data));
     };
 
     updateSetInfo = async (data: TBannerSetInfo) => {
-        const res = await this.send('PUT', `${this.adminUrl}sets/info`, JSON.stringify(data));
-        return JSON.parse(res);
+        //empty response
+        await this.send('PUT', `sets/info`, JSON.stringify(data));
     };
 
     deleteSet = async (setId: number) => {
@@ -58,17 +58,12 @@ export class ServiceApi extends BaseApi {
      **********************************************************************************/
 
     saveImages = async (setId: number, data: TApiImageStore): Promise<TApiImageMapping> => {
-        const res = await this.send('POST', `${this.adminUrl}images/${setId}/upload`, JSON.stringify(data));
+        const res = await this.send('POST', `images/${setId}/upload`, JSON.stringify(data));
         return JSON.parse(res).image;
     };
 
     getImages = async (setId: number, imgIds: number[]): Promise<TApiImage[]> => {
-        const res = await this.send(
-            'POST',
-            `${this.adminUrl}images/${setId}/download`,
-            JSON.stringify(imgIds),
-            'application/json'
-        );
+        const res = await this.send('POST', `images/${setId}/download`, JSON.stringify(imgIds), 'application/json');
         return JSON.parse(res).img;
     };
 }
