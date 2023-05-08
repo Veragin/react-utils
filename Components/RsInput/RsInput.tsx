@@ -11,6 +11,9 @@ type Props<T> = {
     readOnly?: boolean;
     type?: "text" | "password" | "number";
     helpTooltip?: string;
+    min?: number;
+    max?: number;
+    step?: number;
 };
 
 const RsInput = <T extends string>({
@@ -21,6 +24,9 @@ const RsInput = <T extends string>({
     readOnly,
     type,
     helpTooltip,
+    min,
+    max,
+    step,
 }: Props<T>) => {
     return (
         <InputLabel>
@@ -31,6 +37,9 @@ const RsInput = <T extends string>({
                 disabled={disabled}
                 readOnly={readOnly}
                 type={type}
+                min={min}
+                max={max}
+                step={step}
             />
         </InputLabel>
     );
