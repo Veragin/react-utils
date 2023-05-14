@@ -32,11 +32,11 @@ const RsNumber = ({
     const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "ArrowUp") {
             const n = value + (step ?? 0);
-            onChange(n);
+            handleChange(String(n));
         }
         if (e.key === "ArrowDown") {
             const n = value - (step ?? 0);
-            onChange(n);
+            handleChange(String(n));
         }
     };
 
@@ -79,7 +79,7 @@ const RsNumber = ({
     );
 };
 
-const chars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+const chars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "-"];
 
 const StyledInput = styled.input`
     ${inputCss}
