@@ -4,22 +4,7 @@ export class PayUApi extends BaseApi {
         super('https://sizefire.eu/editor/v1');
     }
 
-    async createPayment(setId: number, email: string): Promise<string> {
-        const ip = await this.getIp();
-
-        const data = {
-            setId,
-            customerIp: ip,
-            buyerInfo: {
-                email,
-            },
-        };
-
-        const res = await this.send('POST', '/payments', JSON.stringify(data));
-        return JSON.parse(res).redirectUrl;
-    }
-
-    async createPaymentSandbox(setId: number, email: string): Promise<string> {
+    async createPayment(setId: number): Promise<string> {
         const data = {
             setId,
             language: 'EN',
