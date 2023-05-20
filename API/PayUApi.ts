@@ -20,17 +20,13 @@ export class PayUApi extends BaseApi {
     }
 
     async createPaymentSandbox(setId: number, email: string): Promise<string> {
-        const ip = await this.getIp();
-
         const data = {
             setId,
-            customerIp: ip,
-            buyerInfo: {
-                email,
-            },
+            language: 'EN',
+            currency: 'USD',
         };
 
-        const res = await this.send('POST', '/payments/sandbox', JSON.stringify(data));
+        const res = await this.send('POST', '/payments/create', JSON.stringify(data), 'application/json');
         return JSON.parse(res).redirectUrl;
     }
 
