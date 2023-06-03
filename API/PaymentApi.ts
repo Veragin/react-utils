@@ -1,10 +1,10 @@
 import { BaseApi } from './BaseApi';
-export class PayUApi extends BaseApi {
+export class PaymentApi extends BaseApi {
     constructor() {
         super('https://sizefire.eu/editor/v1');
     }
 
-    async createPayment(setId: number): Promise<string> {
+    async createPayment(setId: number): Promise<TPaymentOrder> {
         const data = {
             setId,
             language: 'EN',
@@ -12,7 +12,7 @@ export class PayUApi extends BaseApi {
         };
 
         const res = await this.send('POST', '/payments/create', JSON.stringify(data), 'application/json');
-        return JSON.parse(res).redirectUrl;
+        return JSON.parse(res);
     }
 
     private getIp = async (): Promise<string> => {
@@ -20,3 +20,8 @@ export class PayUApi extends BaseApi {
         return (await res.json()).ip;
     };
 }
+
+type TPaymentOrder = {
+    redirectUrl: string;
+    token: string;
+};
