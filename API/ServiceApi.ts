@@ -20,7 +20,7 @@ export class ServiceApi extends BaseApi {
     };
 
     getSet = async (setId: number): Promise<TBannerSetExport> => {
-        const token = localStorage.getItem(`downloadToken${setId}`);
+        const token = getToken(setId);
         const data = token ? { token } : undefined;
         const res = await this.send('GET', `sets/${setId}`, data);
         return JSON.parse(res);
@@ -65,10 +65,22 @@ export class ServiceApi extends BaseApi {
     };
 
     getImages = async (setId: number, imgIds: number[]): Promise<TApiImage[]> => {
-        const res = await this.send('POST', `images/${setId}/download`, JSON.stringify(imgIds), 'application/json');
+        const token = getToken(setId);
+        const query = token ? `?token=${token}` : '';
+
+        const res = await this.send(
+            'POST',
+            `images/${setId}/download${query}`,
+            JSON.stringify(imgIds),
+            'application/json'
+        );
         return JSON.parse(res).img;
     };
 }
+
+const getToken = (setId: number) => {
+    return localStorage.getItem(`downloadToken${setId}`);
+};
 
 /**********************************************************************************
  ************    Images - Types
