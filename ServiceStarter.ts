@@ -27,6 +27,10 @@ class ServiceStarter {
         window.open(`${this.baseUrl}?a=info&info=downloadError&setId=${setId}`, '_self');
     };
 
+    openUnknownError = () => {
+        window.open(`${this.baseUrl}?a=info&info=unknownError`, '_self');
+    };
+
     private get baseUrl() {
         if (currentUser.user.roles.includes('ADMIN')) {
             return 'https://admin.sizefire.com/service';
