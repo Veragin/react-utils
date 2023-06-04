@@ -2,6 +2,7 @@ import { currentUser } from 'react-utils/Wrappers/UserWrapper';
 import { TBannerSetExport, TBannerSetInfo } from '../Const/BannerSet';
 
 import { BaseApi } from './BaseApi';
+import { getDownloadTokenFromLocalStorage } from 'react-utils/downloadToken';
 
 export class ServiceApi extends BaseApi {
     constructor() {
@@ -20,8 +21,9 @@ export class ServiceApi extends BaseApi {
     };
 
     getSet = async (setId: number): Promise<TBannerSetExport> => {
-        const token = getToken(setId);
+        const token = getDownloadTokenFromLocalStorage(setId);
         const data = token ? { token } : undefined;
+
         const res = await this.send('GET', `sets/${setId}`, data);
         return JSON.parse(res);
     };
@@ -65,7 +67,7 @@ export class ServiceApi extends BaseApi {
     };
 
     getImages = async (setId: number, imgIds: number[]): Promise<TApiImage[]> => {
-        const token = getToken(setId);
+        const token = getDownloadTokenFromLocalStorage(setId);
         const query = token ? `?token=${token}` : '';
 
         const res = await this.send(
@@ -77,10 +79,6 @@ export class ServiceApi extends BaseApi {
         return JSON.parse(res).img;
     };
 }
-
-const getToken = (setId: number) => {
-    return localStorage.getItem(`downloadToken${setId}`);
-};
 
 /**********************************************************************************
  ************    Images - Types
