@@ -32,6 +32,7 @@ export const ThePrimaryButton = styled.button<{ $small?: boolean }>`
     &:disabled {
         background: lightgray;
         box-shadow: none;
+        cursor: default;
     }
 `;
 
@@ -43,6 +44,9 @@ export const TheSecondaryButton = styled.button<{ $small?: boolean }>`
 
     &:hover {
         box-shadow: 0px 0px 24px rgb(100 100 100 / 20%);
+    }
+    &:disabled {
+        cursor: default;
     }
 `;
 

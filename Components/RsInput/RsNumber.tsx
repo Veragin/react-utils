@@ -1,8 +1,8 @@
-import { InputLabel, inputCss } from "./InputCss";
+import { InputLabel, inputCss } from './InputCss';
 
-import styled from "styled-components";
-import { InputTitle } from "./InputTitle";
-import { useState } from "react";
+import styled from 'styled-components';
+import { InputTitle } from './InputTitle';
+import { useState } from 'react';
 
 type Props = {
     title: string;
@@ -10,7 +10,7 @@ type Props = {
     onChange: (v: number) => void;
     disabled?: boolean;
     readOnly?: boolean;
-    helpTooltip?: string;
+    helpTitle?: string;
     min?: number;
     max?: number;
     step?: number;
@@ -22,7 +22,7 @@ const RsNumber = ({
     onChange,
     disabled,
     readOnly,
-    helpTooltip,
+    helpTitle,
     min,
     max,
     step,
@@ -30,11 +30,11 @@ const RsNumber = ({
     const [tmpValue, setTmpValue] = useState(String(value));
 
     const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "ArrowUp") {
+        if (e.key === 'ArrowUp') {
             const n = value + (step ?? 0);
             handleChange(String(n));
         }
-        if (e.key === "ArrowDown") {
+        if (e.key === 'ArrowDown') {
             const n = value - (step ?? 0);
             handleChange(String(n));
         }
@@ -48,10 +48,10 @@ const RsNumber = ({
 
     const processValue = (v: string) => {
         const numbV = v
-            .replace(",", ".")
-            .split("")
+            .replace(',', '.')
+            .split('')
             .filter((ch) => chars.includes(ch))
-            .join("");
+            .join('');
         const n = parseFloat(numbV);
         return Math.max(
             min ?? Number.NEGATIVE_INFINITY,
@@ -65,7 +65,7 @@ const RsNumber = ({
 
     return (
         <InputLabel>
-            <InputTitle helpTitle={helpTooltip}>{title}</InputTitle>
+            <InputTitle helpTitle={helpTitle}>{title}</InputTitle>
             <StyledInput
                 value={tmpValue}
                 onChange={(e) => handleChange(e.target.value)}
@@ -79,7 +79,7 @@ const RsNumber = ({
     );
 };
 
-const chars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "-"];
+const chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '-'];
 
 const StyledInput = styled.input`
     ${inputCss}
