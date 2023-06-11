@@ -5,10 +5,10 @@ import { Typography } from '@mui/material';
 
 type Props = {
     data: string[];
-    step: number;
+    index: number;
 };
 
-export const RsStepper = ({ data, step }: Props) => {
+export const RsStepper = ({ data, index }: Props) => {
     return (
         <StyledCont>
             <SteperHolder>
@@ -16,13 +16,13 @@ export const RsStepper = ({ data, step }: Props) => {
                     <Step
                         key={i}
                         state={
-                            i < step ? 'prev' : i === step ? 'active' : 'next'
+                            i < index ? 'prev' : i === index ? 'active' : 'next'
                         }
                         hasPipe={i !== 0}
                     />
                 ))}
             </SteperHolder>
-            <StyledTitle>{data[step] ?? ``}</StyledTitle>
+            <StyledTitle>{data[index] ?? ``}</StyledTitle>
         </StyledCont>
     );
 };
