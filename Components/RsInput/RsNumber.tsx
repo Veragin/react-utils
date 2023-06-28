@@ -59,7 +59,7 @@ const RsNumber = ({
         );
     };
 
-    if (processValue(tmpValue) !== value) {
+    if (!Number.isNaN(value) && processValue(tmpValue) !== value) {
         setTmpValue(String(value));
     }
 
