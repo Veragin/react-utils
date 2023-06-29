@@ -23,8 +23,8 @@ export type TNode = {
 };
 
 export type TMirror = 0 | 1 | 2 | 3;
-export type TNodeType = 'text' | 'image' | 'group' | 'ellipse' | 'polygon' | 'unknown';
-export type TNodeProperty = Partial<TText & TImage & TEllipse & TGroup & TPolygon>;
+export type TNodeType = 'text' | 'image' | 'group' | 'ellipse' | 'polygon' | 'clipS' | 'clipE' | 'unknown';
+export type TNodeProperty = Partial<TText & TImage & TEllipse & TGroup & TPolygon & TClipS>;
 
 export type TGroup = TNode & {
     stack: TNodeProperty[];
@@ -83,11 +83,12 @@ export type TTextBaseLine = 'top' | 'bottom' | 'middle' | 'alphabetic' | 'hangin
  ******************************************************************/
 
 export type TImage = TNode & {
-    imgId?: number;
     mappingId?: number;
+    imgId: number;
     filters: TFilter[];
     blendingMode: TBlendingModeType;
     subimage: TRect;
+    img?: string | HTMLImageElement;
 };
 
 export type TFilterType = 'sobel' | 'grayscale' | 'brightness' | 'threshold' | 'convolute';
