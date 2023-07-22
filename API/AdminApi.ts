@@ -8,8 +8,11 @@ export class AdminApi extends BaseApi {
         super('https://sizefire.eu/');
     }
 
-    getUserList = async (): Promise<TUserShortInfo[]> => {
-        const res = await this.send('GET', `user/v1/admin/users`);
+    getUserList = async (page: number, role?: TUserRole): Promise<TUserShortInfo[]> => {
+        const res = await this.send('GET', `user/v1/admin/users`, {
+            page,
+            role: role?.toLowerCase(),
+        });
         return JSON.parse(res);
     };
 
@@ -55,16 +58,18 @@ export class AdminApi extends BaseApi {
 
 export type TUserShortInfo = {
     id: number;
-    image: string;
+    image: string | null;
     username: string;
     email: string;
-    role: TUserRole;
     subscriptionPlan: TSubscriptionPlan;
     expirationDate: number;
     templatesUsed: number;
     publicUsed: number;
     privateExported: number;
+    state: TUserState;
 };
+
+type TUserState = 'no_mail' | 'active';
 
 export type TSetInfo = TBannerSetInfo & {
     userId: number;
