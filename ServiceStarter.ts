@@ -1,5 +1,3 @@
-import { currentUser } from './Wrappers/UserWrapper';
-
 class ServiceStarter {
     toHomePage = () => window.open('https://www.sizefire.com', '_self');
 
@@ -32,9 +30,6 @@ class ServiceStarter {
     };
 
     private get baseUrl() {
-        if (currentUser.user.roles.includes('ADMIN')) {
-            return 'https://admin.sizefire.com/service';
-        }
         return 'https://sizefire.com/service';
     }
 }
