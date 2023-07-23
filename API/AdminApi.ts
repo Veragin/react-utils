@@ -31,7 +31,15 @@ export class AdminApi extends BaseApi {
     };
 
     banUser = async (userId: number, ban: boolean): Promise<void> => {
-        await this.send('PUT', `user/v1/admin/users/${userId}/ban`, { ban });
+        await this.send('PUT', `user/v1/admin/users/${userId}/ban`, JSON.stringify({ ban }));
+    };
+
+    changeUserPassword = async (userId: number, password: string) => {
+        await this.send(
+            'PUT',
+            `user/v1/admin/users/${userId}/password`,
+            JSON.stringify({ password })
+        );
     };
 
     getUserInfo = async (userId: number): Promise<TUserInfo> => {
@@ -40,7 +48,7 @@ export class AdminApi extends BaseApi {
     };
 
     setUserInfo = async (userId: number, info: TUserInfo): Promise<void> => {
-        await this.send('PUT', `user/v1/admin/users/${userId}`, info);
+        await this.send('PUT', `user/v1/admin/users/${userId}`, JSON.stringify(info));
     };
 
     /************************************************

@@ -37,6 +37,7 @@ export type TAccountDetails = {
     image: string | null;
     language: TLanguage;
     profession: string;
+    state: TUserState;
 };
 
 export type TBillingInfo = {
@@ -69,6 +70,7 @@ export const DEFAULT_USER: TUserInfo = {
         name: 'unknown',
         profession: 'unkown',
         roles: ['USER'],
+        state: 'active',
     },
     accountId: 0,
     billingInfo: {
