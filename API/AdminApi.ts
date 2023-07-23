@@ -8,6 +8,10 @@ export class AdminApi extends BaseApi {
         super('https://sizefire.eu/');
     }
 
+    /************************************************
+     ********  User
+     ************************************************/
+
     getUserList = async (page: number, role?: TUserRole): Promise<TUserShortInfo[]> => {
         const res = await this.send('GET', `user/v1/admin/users`, {
             page,
@@ -20,6 +24,10 @@ export class AdminApi extends BaseApi {
         await this.send('DELETE', `user/v1/admin/users/${userId}`);
     };
 
+    banUser = async (userId: number, ban: boolean): Promise<void> => {
+        await this.send('PUT', `user/v1/admin/users/${userId}/ban`, { ban });
+    };
+
     getUserInfo = async (userId: number): Promise<TUserInfo> => {
         const res = await this.send('GET', `user/v1/admin/users/${userId}`);
         return JSON.parse(res);
@@ -28,6 +36,10 @@ export class AdminApi extends BaseApi {
     setUserInfo = async (userId: number, info: TUserInfo): Promise<void> => {
         await this.send('PUT', `user/v1/admin/users/${userId}`, info);
     };
+
+    /************************************************
+     ********  Set
+     ************************************************/
 
     approveDraft = async (setId: number) => {
         await this.send('PUT', `sets/confirm/${setId}`);
