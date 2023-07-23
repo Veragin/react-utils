@@ -20,6 +20,11 @@ export class AdminApi extends BaseApi {
         return JSON.parse(res);
     };
 
+    getUserCount = async (role?: TUserRole): Promise<number> => {
+        const res = await this.send('GET', `editor/v1/admin/users/count`, { role });
+        return JSON.parse(res).count;
+    };
+
     deleteUser = async (userId: number): Promise<void> => {
         await this.send('DELETE', `user/v1/admin/users/${userId}`);
     };
