@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 
-import { spacingCss } from "../globalCss";
+import { spacingCss } from '../globalCss';
 
 export const inputCss = css`
     ${({ theme }) => css`
@@ -15,12 +15,12 @@ export const inputCss = css`
         box-sizing: border-box;
         font-size: ${theme.measurements.fontSize}px;
 
-        &:hover {
+        &:not(:read-only):hover {
             background-color: ${theme.palette.input.hover};
             border: 2px solid ${theme.palette.input.hover};
         }
 
-        &:focus {
+        &:not(:read-only):focus {
             border: 2px solid ${theme.palette.primary.main};
             background-color: ${theme.palette.input.hover};
         }
@@ -29,6 +29,10 @@ export const inputCss = css`
             background-color: ${theme.palette.input.hover};
             border: 2px solid ${theme.palette.input.hover};
             color: grey;
+        }
+
+        &:read-only {
+            cursor: default;
         }
     `}
 `;

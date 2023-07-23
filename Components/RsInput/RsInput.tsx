@@ -1,7 +1,7 @@
-import { InputLabel, inputCss } from "./InputCss";
+import { InputLabel, inputCss } from './InputCss';
 
-import styled from "styled-components";
-import { InputTitle } from "./InputTitle";
+import styled from 'styled-components';
+import { InputTitle } from './InputTitle';
 
 type Props<T> = {
     title: string;
@@ -9,7 +9,7 @@ type Props<T> = {
     onChange?: (v: T) => void;
     disabled?: boolean;
     readOnly?: boolean;
-    type?: "text" | "password" | "number";
+    type?: 'text' | 'password' | 'number';
     helpTooltip?: string;
     min?: number;
     max?: number;

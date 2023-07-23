@@ -18,6 +18,7 @@ export const BoardPaper = ({ title, children }: Props) => {
 };
 
 const StyledCont = styled(Column)`
+    position: relative;
     width: calc(100% - ${spacingCss(6)});
     padding: ${spacingCss(3)};
     background-color: white;
