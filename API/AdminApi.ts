@@ -69,9 +69,12 @@ export type TUserShortInfo = {
     state: TUserState;
 };
 
-type TUserState = 'no_mail' | 'active';
+type TUserState = 'active' | 'removed' | 'no_mail' | 'banned';
+
+type TSetState = 'private_paid' | 'private_not_paid' | 'public_hidden';
 
 export type TSetInfo = TBannerSetInfo & {
+    state?: TSetState;
     userId: number;
     visible: boolean;
 };
