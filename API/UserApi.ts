@@ -1,6 +1,5 @@
 import { BaseApi } from './BaseApi';
-import { TLanguage } from 'react-utils/LanguageStore';
-import { TUserRole } from 'react-utils/Const/User';
+import { TUserInfo } from 'react-utils/Const/User';
 
 export class UserApi extends BaseApi {
     constructor() {
@@ -56,44 +55,7 @@ export class UserApi extends BaseApi {
     };
 }
 
-export type TUserInfo = {
-    accountId: number;
-    accountDetails: TAccountDetails;
-    billingInfo: TBillingInfo | null;
-    contributorInfo: TContributorInfo | null;
-    researchDetails: TResearchDetails | null;
-    lastLogin: string;
-};
-
-export type TAccountDetails = {
-    name: string | null;
-    email: string;
-    roles: TUserRole[];
-    image: string | null;
-    language: TLanguage;
-    profession: string;
-};
-
-export type TBillingInfo = {
-    subscriptionPlan: TSubscriptionPlan;
-    billilngFrequency: TBillilngFrequency;
-    paymentState: TPaymentState;
-    expirationDate: number;
-};
-
-export type TContributorInfo = {
-    bankNumber: number;
-};
-
-export type TSubscriptionPlan = 'free' | 'vip';
-export type TBillilngFrequency = 'monthly' | 'yearly';
-export type TPaymentState = 'waitingForPayment' | 'paid';
-
 export type TUserPassword = {
     newPassword: string;
     oldPassword: string;
-};
-
-type TResearchDetails = {
-    banned: boolean;
 };

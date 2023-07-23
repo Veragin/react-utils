@@ -1,7 +1,6 @@
 import { TBannerSetInfo, TBannerSetType } from 'react-utils/Const/BannerSet';
 import { BaseApi } from './BaseApi';
-import { TSubscriptionPlan, TUserInfo } from './UserApi';
-import { TUserRole } from 'react-utils/Const/User';
+import { TUserInfo, TUserRole, TUserShortInfo } from 'react-utils/Const/User';
 
 export class AdminApi extends BaseApi {
     constructor() {
@@ -21,7 +20,9 @@ export class AdminApi extends BaseApi {
     };
 
     getUserCount = async (role?: TUserRole): Promise<number> => {
-        const res = await this.send('GET', `editor/v1/admin/users/count`, { role });
+        const res = await this.send('GET', `user/v1/admin/users/count`, {
+            role: role?.toLowerCase(),
+        });
         return JSON.parse(res).count;
     };
 
@@ -72,21 +73,6 @@ export class AdminApi extends BaseApi {
         return JSON.parse(res).count;
     };
 }
-
-export type TUserShortInfo = {
-    id: number;
-    image: string | null;
-    username: string;
-    email: string;
-    subscriptionPlan: TSubscriptionPlan;
-    expirationDate: number;
-    templatesUsed: number;
-    publicUsed: number;
-    privateExported: number;
-    state: TUserState;
-};
-
-type TUserState = 'active' | 'removed' | 'no_mail' | 'banned';
 
 type TSetState =
     | 'private_paid'
