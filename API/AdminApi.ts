@@ -83,7 +83,18 @@ export type TUserShortInfo = {
 
 type TUserState = 'active' | 'removed' | 'no_mail' | 'banned';
 
-type TSetState = 'private_paid' | 'private_not_paid' | 'public_hidden';
+type TSetState =
+    | 'private_paid'
+    | 'private_not_paid'
+    | 'before_review'
+    | 'in_review'
+    | 'returned'
+    | 'template_published'
+    | 'template_hidden'
+    | 'public_published'
+    | 'public_hidden'
+    | 'taken_review'
+    | 'taken_hidden';
 
 export type TSetInfo = TBannerSetInfo & {
     state?: TSetState;
