@@ -23,16 +23,8 @@ export type TNode = {
 };
 
 export type TMirror = 0 | 1 | 2 | 3;
-export type TNodeType =
-    | 'text'
-    | 'image'
-    | 'group'
-    | 'ellipse'
-    | 'polygon'
-    | 'clipS'
-    | 'clipE'
-    | 'unknown';
-export type TNodeProperty = Partial<TText & TImage & TEllipse & TGroup & TPolygon>;
+export type TNodeType = 'text' | 'image' | 'group' | 'ellipse' | 'polygon' | 'rect' | 'clipS' | 'clipE' | 'unknown';
+export type TNodeProperty = Partial<TText & TImage & TEllipse & TGroup & TPolygon & TShapeRect>;
 
 export type TGroup = TNode & {
     stack: TNodeProperty[];
@@ -58,6 +50,10 @@ export type TEllipse = TShape & {
 
 export type TPolygon = TShape & {
     points: TPoint[];
+};
+
+export type TShapeRect = TShape & {
+    borderRadius: number[];
 };
 
 /******************************************************************
@@ -100,14 +96,7 @@ export type TImage = TNode & {
 };
 
 export type TFilterType = 'sobel' | 'grayscale' | 'brightness' | 'threshold' | 'convolute';
-export type TFilterConvoluteType =
-    | 'blur'
-    | 'sharp'
-    | 'master'
-    | 'shape'
-    | 'shape1'
-    | 'vertical'
-    | 'horizontal';
+export type TFilterConvoluteType = 'blur' | 'sharp' | 'master' | 'shape' | 'shape1' | 'vertical' | 'horizontal';
 export type TFilter =
     | {
           type: 'convolute';
