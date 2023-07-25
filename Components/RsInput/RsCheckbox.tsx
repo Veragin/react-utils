@@ -1,7 +1,6 @@
-import { InputLabel } from './InputCss';
-
 import { Checkbox } from '@mui/material';
-import { InputTitle } from './InputTitle';
+import styled from 'styled-components';
+import { spacingCss } from '../globalCss';
 
 type Props = {
     title: string;
@@ -14,7 +13,6 @@ type Props = {
 export const RsCheckbox = ({ title, value, onChange, disabled, helpTooltip }: Props) => {
     return (
         <InputLabel>
-            <InputTitle helpTitle={helpTooltip}>{title}</InputTitle>
             <Checkbox
                 checked={value}
                 onChange={(e) => {
@@ -22,6 +20,16 @@ export const RsCheckbox = ({ title, value, onChange, disabled, helpTooltip }: Pr
                 }}
                 disabled={disabled}
             />
+            {title}
         </InputLabel>
     );
 };
+
+const InputLabel = styled.label`
+    width: 100%;
+    display: flex;
+    row-gap: ${spacingCss(1)};
+    align-items: center;
+    font-size: 13px;
+    cursor: pointer;
+`;
