@@ -15,7 +15,6 @@ export const RsNumberArrayInput = ({ value, onChange, ...props }: Props) => {
     const handleChange = (v: string) => {
         setTmpValue(v);
         const n = processValue(v);
-        console.log(n);
         onChange?.(n);
     };
 
