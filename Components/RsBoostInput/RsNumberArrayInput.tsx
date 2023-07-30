@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import RsInput from '../RsInput/RsInput';
+import { RsInput } from '../RsInput/RsInput';
 
 type Props = Omit<
     React.ComponentProps<typeof RsInput>,

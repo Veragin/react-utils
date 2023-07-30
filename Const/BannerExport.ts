@@ -23,17 +23,8 @@ export type TNode = {
 };
 
 export type TMirror = 0 | 1 | 2 | 3;
-export type TNodeType =
-    | 'text'
-    | 'image'
-    | 'group'
-    | 'ellipse'
-    | 'polygon'
-    | 'roundRect'
-    | 'clipS'
-    | 'clipE'
-    | 'unknown';
-export type TNodeProperty = Partial<TText & TImage & TEllipse & TGroup & TPolygon & TRoundRect>;
+export type TNodeType = 'text' | 'image' | 'group' | 'ellipse' | 'polygon' | 'clipS' | 'clipE' | 'unknown';
+export type TNodeProperty = Partial<TText & TImage & TEllipse & TGroup & TPolygon>;
 
 export type TGroup = TNode & {
     stack: TNodeProperty[];
@@ -59,10 +50,7 @@ export type TEllipse = TShape & {
 
 export type TPolygon = TShape & {
     points: TPoint[];
-};
-
-export type TRoundRect = TShape & {
-    borderRadius: number[];
+    borderRadius: number;
 };
 
 /******************************************************************

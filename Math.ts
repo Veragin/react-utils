@@ -1,7 +1,7 @@
 export const EPSILON = 0.00000000001;
 
 /** rotate a around s with angle alpha */
-export const rotatePoint = (alpha: number, s: TPoint, a: TPoint) => {
+export const rotatePoint = (alpha: number, s: TPoint, a: TPoint): TPoint => {
     return {
         x: s.x + Math.cos(alpha) * (a.x - s.x) - Math.sin(alpha) * (a.y - s.y),
         y: s.y + Math.sin(alpha) * (a.x - s.x) + Math.cos(alpha) * (a.y - s.y),

@@ -2,54 +2,23 @@ import { InputLabel, inputCss } from './InputCss';
 
 import styled from 'styled-components';
 import { InputTitle } from './InputTitle';
+import { TextInput } from '../Components/TextInput';
+import { ComponentProps } from 'react';
 
-type Props<T> = {
+type Props = {
     title: string;
-    value: T;
-    onChange?: (v: T) => void;
-    onBlur?: () => void;
-    disabled?: boolean;
-    readOnly?: boolean;
-    type?: 'text' | 'password' | 'number';
     helpTooltip?: string;
-    min?: number;
-    max?: number;
-    step?: number;
-};
+} & ComponentProps<typeof TextInput>;
 
-const RsInput = <T extends string>({
-    title,
-    value,
-    onChange,
-    onBlur,
-    disabled,
-    readOnly,
-    type,
-    helpTooltip,
-    min,
-    max,
-    step,
-}: Props<T>) => {
+export const RsInput = ({ title, helpTooltip, ...props }: Props) => {
     return (
         <InputLabel>
             <InputTitle helpTitle={helpTooltip}>{title}</InputTitle>
-            <StyledInput
-                value={value}
-                onChange={(e) => onChange?.(e.target.value as T)}
-                onBlur={onBlur}
-                disabled={disabled}
-                readOnly={readOnly}
-                type={type}
-                min={min}
-                max={max}
-                step={step}
-            />
+            <StyledInput {...props} />
         </InputLabel>
     );
 };
 
-const StyledInput = styled.input`
+const StyledInput = styled(TextInput)`
     ${inputCss}
 `;
-
-export default RsInput;
