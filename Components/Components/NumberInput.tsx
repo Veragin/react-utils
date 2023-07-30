@@ -13,7 +13,7 @@ type Props = Omit<
 };
 
 export const NumberInput = forwardRef<HTMLInputElement, Props>(
-    ({ value, onChange, onKeyPress, step = 0.01, min, max, ...props }, ref) => {
+    ({ value, onChange, onKeyPress, step, min, max, ...props }, ref) => {
         const valueToString = (v: number) =>
             String(Math.round((v + Number.EPSILON) * 100) / 100);
         const [tmpValue, setTmpValue] = useState(valueToString(value));
