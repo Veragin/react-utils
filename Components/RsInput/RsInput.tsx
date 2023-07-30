@@ -3,12 +3,12 @@ import { InputLabel, inputCss } from './InputCss';
 import styled from 'styled-components';
 import { InputTitle } from './InputTitle';
 import { TextInput } from '../Components/TextInput';
-import { ComponentProps } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
 type Props = {
     title: string;
     helpTooltip?: string;
-} & ComponentProps<typeof TextInput>;
+} & ComponentPropsWithoutRef<typeof TextInput>;
 
 export const RsInput = ({ title, helpTooltip, ...props }: Props) => {
     return (
