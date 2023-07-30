@@ -35,11 +35,7 @@ export class AdminApi extends BaseApi {
     };
 
     changeUserPassword = async (userId: number, password: string) => {
-        await this.send(
-            'PUT',
-            `user/v1/admin/users/${userId}/password`,
-            JSON.stringify({ password })
-        );
+        await this.send('PUT', `user/v1/admin/users/${userId}/password`, JSON.stringify({ password }));
     };
 
     getUserInfo = async (userId: number): Promise<TUserInfo> => {
@@ -65,6 +61,10 @@ export class AdminApi extends BaseApi {
 
     setSetVisibility = async (setId: number, visible: boolean) => {
         await this.send('PUT', `/editor/v1/admin/sets/${setId}/${visible}`);
+    };
+
+    setSetState = async (setId: number, state: TSetState) => {
+        await this.send('PUT', `/editor/v1/admin/sets/${setId}/${state}`);
     };
 
     deleteSet = async (setId: number) => {
