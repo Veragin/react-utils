@@ -7,6 +7,7 @@ type Props<T> = {
     title: string;
     value: T;
     onChange?: (v: T) => void;
+    onBlur?: () => void;
     disabled?: boolean;
     readOnly?: boolean;
     type?: 'text' | 'password' | 'number';
@@ -20,6 +21,7 @@ const RsInput = <T extends string>({
     title,
     value,
     onChange,
+    onBlur,
     disabled,
     readOnly,
     type,
@@ -34,6 +36,7 @@ const RsInput = <T extends string>({
             <StyledInput
                 value={value}
                 onChange={(e) => onChange?.(e.target.value as T)}
+                onBlur={onBlur}
                 disabled={disabled}
                 readOnly={readOnly}
                 type={type}

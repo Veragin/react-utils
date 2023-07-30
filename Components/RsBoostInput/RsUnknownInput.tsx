@@ -1,13 +1,20 @@
-import RsInput from './RsInput';
+import RsInput from '../RsInput/RsInput';
 
 const UNKOWN = 'unknown';
 
-type Props<T extends string> = Omit<React.ComponentProps<typeof RsInput>, 'value'> & {
+type Props<T extends string> = Omit<
+    React.ComponentProps<typeof RsInput>,
+    'value'
+> & {
     value?: T | null;
     onChange?: (v: T | null) => void;
 };
 
-export const RsUnkownInput = <T extends string>({ value, onChange, ...props }: Props<T>) => {
+export const RsUnkownInput = <T extends string>({
+    value,
+    onChange,
+    ...props
+}: Props<T>) => {
     return (
         <RsInput
             {...props}
