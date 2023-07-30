@@ -13,8 +13,10 @@ type Props = Omit<
 };
 
 export const NumberInput = forwardRef<HTMLInputElement, Props>(
-    ({ value, onChange, onKeyPress, step, min, max, ...props }, ref) => {
-        const [tmpValue, setTmpValue] = useState(String(value));
+    ({ value, onChange, onKeyPress, step = 0.01, min, max, ...props }, ref) => {
+        const valueToString = (v: number) =>
+            String(Math.round((v + Number.EPSILON) * 100) / 100);
+        const [tmpValue, setTmpValue] = useState(valueToString(value));
 
         const onKeyPressHandler = (
             e: React.KeyboardEvent<HTMLInputElement>
@@ -49,8 +51,11 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
             );
         };
 
-        if (!Number.isNaN(value) && processValue(tmpValue) !== value) {
-            setTmpValue(String(value));
+        if (
+            !Number.isNaN(value) &&
+            processValue(tmpValue) !== Number(valueToString(value))
+        ) {
+            setTmpValue(valueToString(value));
         }
 
         return (
@@ -59,7 +64,7 @@ export const NumberInput = forwardRef<HTMLInputElement, Props>(
                 ref={ref}
                 onChange={handleChange}
                 onKeyDown={onKeyPressHandler}
-                onBlur={() => setTmpValue(String(value))}
+                onBlur={() => setTmpValue(valueToString(value))}
                 {...props}
             />
         );
