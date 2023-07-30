@@ -63,6 +63,10 @@ export class AdminApi extends BaseApi {
         await this.send('PUT', `sets/confirm/${setId}`, msg);
     };
 
+    setSetVisibility = async (setId: number, visible: boolean) => {
+        await this.send('PUT', `/editor/v1/admin/sets/${setId}/${visible}`);
+    };
+
     deleteSet = async (setId: number) => {
         await this.send('DELETE', `editor/v1/admin/sets/${setId}`);
     };
