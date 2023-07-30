@@ -23,7 +23,7 @@ export type TNode = {
 };
 
 export type TMirror = 0 | 1 | 2 | 3;
-export type TNodeType = 'text' | 'image' | 'group' | 'ellipse' | 'polygon' | 'clipS' | 'clipE' | 'unknown';
+export type TNodeType = 'text' | 'image' | 'group' | 'ellipse' | 'polygon' | 'unknown';
 export type TNodeProperty = Partial<TText & TImage & TEllipse & TGroup & TPolygon>;
 
 export type TGroup = TNode & {
