@@ -1,4 +1,12 @@
+import { Shape } from 'Service/Nodes';
 import { TColor, TPoint, TRect } from './Types';
+
+export type TSetExport = {
+    setInfo: {
+        id: number;
+    };
+    extents: TBannerExport[];
+};
 
 export type TBannerExport = TRect & {
     id: number;
@@ -29,6 +37,7 @@ export type TNodeProperty = Partial<TText & TImage & TEllipse & TGroup & TPolygo
 export type TGroup = TNode & {
     stack: TNodeProperty[];
     collapse: boolean;
+    shape: Shape | null;
 };
 
 export type TShape = TNode & {
