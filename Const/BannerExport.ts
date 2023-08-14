@@ -41,9 +41,9 @@ export type TGroup = TNode & {
 };
 
 export type TShape = TNode & {
-    fill: TColor;
+    fill: TColor | null;
     strokeWidth: number;
-    strokeColor: TColor;
+    strokeColor: TColor | null;
     lineCap: TLineCap;
     lineJoin: TLineJoin;
 };
@@ -55,6 +55,10 @@ export type TEllipse = TShape & {
     start: number;
     end: number;
     isArc: boolean;
+};
+
+export type TArc = TEllipse & {
+    radius: number;
 };
 
 export type TPolygon = TShape & {
