@@ -41,9 +41,9 @@ export type TGroup = TNode & {
 };
 
 export type TShape = TNode & {
-    fill: TColor | null;
+    fill: TColor;
     strokeWidth: number;
-    strokeColor: TColor | null;
+    strokeColor: TColor;
     lineCap: TLineCap;
     lineJoin: TLineJoin;
 };
