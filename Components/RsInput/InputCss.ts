@@ -43,3 +43,7 @@ export const InputLabel = styled.label`
     flex-direction: column;
     row-gap: ${spacingCss(0.5)};
 `;
+
+export const HelperText = styled.span`
+    color: #555;
+`;
