@@ -25,6 +25,10 @@ class ServiceStarter {
         window.open(`${this.baseUrl}?a=info&info=downloadError&setId=${setId}`, '_self');
     };
 
+    openThankYouDownload = () => {
+        window.open(`${this.baseUrl}/thankyou/downloaded/`, '_self');
+    };
+
     openUnknownError = () => {
         window.open(`${this.baseUrl}?a=info&info=unknownError`, '_self');
     };
