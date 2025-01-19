@@ -85,6 +85,10 @@ export type TText = TShape & {
 export type TFont = {
     fontFamily: string;
     fontWeight: TFontWeight;
+    custom?: {
+        data: string | ArrayBuffer;
+        fileFormat: string;
+    };
 };
 export type TFontWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '800' | '900';
 export type TFontStyle = 'normal' | 'italic' | 'oblique';
@@ -97,7 +101,7 @@ export type TTextBaseLine = 'top' | 'bottom' | 'middle' | 'alphabetic' | 'hangin
 
 export type TImage = TNode & {
     mappingId?: number;
-    imgId: number;
+    imgId: string;
     filters: TFilter[];
     blendingMode: TBlendingModeType;
     subimage: TRect;
