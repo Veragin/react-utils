@@ -19,3 +19,12 @@ export const HeadTitle = styled(Typography)`
         font-size: 16px;
     }
 `;
+
+export const GreyText = styled(Typography)`
+    width: 100%;
+    color: #444;
+
+    &.MuiTypography-root {
+        font-size: 12px;
+    }
+`;
