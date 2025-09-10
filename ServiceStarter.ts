@@ -1,5 +1,5 @@
 class ServiceStarter {
-    toHomePage = () => window.open('https://www.sizefire.com', '_self');
+    toHomePage = () => window.open('https://www.veragin.com', '_self');
 
     createPublicFromScratch = () => {
         window.open(`${this.baseServiceUrl}?a=service&techTree=TEMPLATE_MAKER`);
@@ -34,7 +34,7 @@ class ServiceStarter {
     };
 
     private get baseServiceUrl() {
-        return 'https://sizefire.com/service';
+        return 'https://service.veragin.com';
     }
 }
 
